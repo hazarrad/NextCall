@@ -1,0 +1,469 @@
+<!-- Sidebar  -->
+
+
+<!-- Page Content  -->
+
+
+
+<div class="container mt-2 mb-5">
+
+    <h2 id="Main_title">Settings</h2>
+    <div class="accordion" id="accordionExample">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+                        data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Coach Filter Settings
+                    </button>
+                </h2>
+            </div>
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div class="d-flex justify-content-center">
+                        <div class="col-md-12 mt-3">
+                            <div class="d-flex align-items-center ">
+                                <div class="form-group form-check col-md-12 ">
+                                    <input type="checkbox" class="form-check-input" id="CFS_Flag1">
+                                    <label class="form-check-label" for="exampleCheck1" id="Filter1">The Coach cannot be
+                                        the Coachee's
+                                        Line Manager</label>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="form-group form-check col-md-7">
+                                    <input type="checkbox" class="form-check-input" id="CFS_Flag2">
+                                    <label class="form-check-label" for="exampleCheck1" id="Filter2a">The Coach cannot
+                                        be the same coach
+                                        used by the coachee in the previous ones</label>
+                                </div>
+                                <div class="form-group row col-md-5">
+                                    <div class="col-sm-4">
+                                        <input type="number" class="form-control " id="CFS_Param2">
+                                    </div>
+                                    <label class="col-form-label" id="Filter2b">call sessions (X: Integer)</label>
+                                </div>
+                            </div>
+
+                            <div class="d-flex align-items-top">
+                                <div class="form-group form-check m-0  col-sm-1">
+                                    <input type="checkbox" class="form-check-input" id="CFS_Flag2">
+                                    <label class="form-check-label" for="exampleCheck1" id="Filter2a">For</label>
+                                </div>
+                                <div class="form-group row  m-0 col-sm-9 m-0 p-0">
+                                    <div class="col-sm-2  m-0 p-0">
+                                        <input type="number" class="form-control " id="CFS_Param31">
+                                    </div>
+                                    <div class="col-sm-10 ">
+                                        <p>days from the moment of use of a Coach, it will not be possible
+                                            to reuse it for
+                                            more than
+                                            (e.g .: starting from the last use of a coach, for 180 days you
+                                            will not be
+                                            able to use the coach more than 3 times)</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row m-0 col-sm-2 m-0 p-0">
+                                    <div class="col-sm-7 m-0 p-0">
+                                        <input type="number" class="form-control " id="CFS_Param32">
+                                    </div>
+                                    <div class="col-sm-5 m-0 p-0 ">
+                                        <p>times)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
+                        data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Feedback Settings
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div class="d-flex justify-content-center">
+                        <div class="col-md-12 mt-2">
+                            <div class="d-flex align-items-center">
+                                <div class="form-group row">
+                                    <label class="col-sm-10 col-form-label" id="Feedback1">Numero ore che devono passare
+                                        prima che il sistema invii una mail di notifica al Coach in caso di richiesta
+                                        call con status °Feedback Required°</label>
+                                    <div class="col-sm-2">
+                                        <input type="number" class="form-control" id="FS_Param1">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="form-group row">
+                                    <label class="col-sm-10 col-form-label" id="Feedback2"> Numero di giorni ogni quanto
+                                        deve essere ripetuto il controllo e il rinvio della mail</label>
+                                    <div class="col-sm-2">
+                                        <input type="number" class="form-control" id="FS_Param2">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="form-group row">
+                                    <label class="col-sm-12 col-form-label" id="Feedback3">
+                                        Definisci il testo del messaggio di sollecito per il Coach che non ha fornito il
+                                        feedback entro la scadenza:
+                                    </label>
+                                    <textarea class="form-control" id="FS_Content" rows="6"
+                                        placeholder="Gentile Coach,ti ricordiamo che hai dei feedback da fornire per le sessioni di coachingeffettuate tramite Perfect Call. Per favore collegati alla piattaform al pi presto e aggiorna la tua valutazione.Grazie mille Il Team Perfect Call "></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="heading3">
+                <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
+                        data-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                        Reminder settings
+                    </button>
+                </h2>
+            </div>
+            <div id="collapse3" class="collapse" aria-labelledby="heading3" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div class="d-flex col-md-12 mt-2  justify-content-center">
+                        <div class="form-group row m-0 p-0 col-md-9">
+                            <label id="Reminder1">For calls in a planned state, send a reminder e-mail to the Coach and
+                                Coachee within</label>
+                            <input type="number" class="form-control col-sm-2 m-0 p-0  " id="RS_Param1">
+                        </div>
+                        <div class="form-group col-md-3 m-0 p-0 ">
+                            <label class="col-form-label" id="Reminder2">hours from the start of the session</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="heading4">
+                <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
+                        data-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                        Compliance
+                    </button>
+                </h2>
+            </div>
+            <div id="collapse4" class="collapse" aria-labelledby="heading4" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div class="d-flex justify-content-center">
+                        <div class="col-md-12 mt-3">
+                            <div class="d-flex align-items-center">
+                                <div class="form-group row align-items-center">
+                                    <label id="Compliance1" class="pr-1">Numero di anni che devono passare prima che il
+                                        sistema
+                                        rimuova le call che sono in stato Completata</label>
+                                    <input type="number" class="form-control col-sm-2 " id="Compl_Param">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="heading5">
+                <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
+                        data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                        Content update
+                    </button>
+                </h2>
+            </div>
+            <div id="collapse5" class="collapse" aria-labelledby="heading5" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div class="d-flex justify-content-center">
+                        <div class="col-md-10 mt-3">
+                            <div class="d-flex align-items-center">
+                                <div class="form-group row align-items-center">
+                                    <label id="Contentupdate1"> Update the Q&A page</label>
+                                    <button class="btn btn-light ml-2 shadow  bg-white rounded " data-toggle="modal"
+                                        data-target="#createQnAModal" id="Contentupdate_button" (click)="showBtnUpdateQnA=false; this.formfaq.reset()">Edit</button>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="form-group row align-items-center">
+                                    <label id="Contentupdate2">Update the Introduction page of the Pretty Program
+                                        Call</label>
+                                    <button class="btn btn-light ml-2 shadow  bg-white rounded" data-toggle="modal"
+                                        data-target="#programDescriptionModal" id="Contentupdate_button2">Edit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="heading6">
+                <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
+                        data-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
+                        Personalize communications
+                    </button>
+                </h2>
+            </div>
+            <div id="collapse6" class="collapse" aria-labelledby="heading6" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div class="d-flex justify-content-center">
+                        <div class="col-md-12 mt-3">
+                            <div class="d-flex align-items-center">
+                                <div class="form-group row">
+                                    <label class="col-sm-12  col-form-label"> <strong id="Communications1"></strong>
+                                    </label>
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" type="checkbox" id="PC_Checkbox1">
+                                        <label class="form-check-label" for="gridCheck"
+                                            id="CommunicationsCheckbox1">Attach information and Call scenario at the end
+                                            of the communication</label> <br>
+                                        <label class="form-check-label" for="gridCheck" id="CommunicationsCheckbox2">Use
+                                            the following placeholders in the text: $$ LinkVeevaCall $$</label>
+                                    </div>
+                                    <textarea class="form-control col-sm-12" id="PC_Content1" rows="10"
+                                        placeholder="Dear Colleague, you receive this calendar as a reminder for the coaching session planned in Perfect Call. We remind you that: - if you cover the role of Coach you will be; You need to connect to Veeva Engage using the following link: $$ LinkVeevaCall $$ - if you hold the role of Coachee you will have to open the Connection by connecting directly to the Call previously created in Veeva Engage. Below you will find the references and the scenario defined for the Buon Coaching call! The Perfect Call Team  "></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <div class="col-md-12 mt-3">
+                            <div class="d-flex align-items-center">
+                                <div class="form-group row">
+                                    <label class="col-sm-12  col-form-label"> <strong id="Communications2"></strong>
+                                    </label>
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" type="checkbox" id="PC_Checkbox2">
+                                        <label class="form-check-label" for="gridCheck"
+                                            id="CommunicationsCheckbox1">Attach information and Call scenario at the end
+                                            of the communication</label> <br>
+                                        <label class="form-check-label" for="gridCheck" id="CommunicationsCheckbox2">Use
+                                            the following placeholders in the text: $$ LinkVeevaCall $$</label>
+                                    </div>
+                                    <textarea class="form-control col-sm-12" id="PC_Content2" rows="10"
+                                        placeholder="Dear Colleague, you receive this e-mail as a coaching session has been scheduled in Perfect Call which requires your involvement in quality; by Coach. We remind you that to access the call you will be & agrave; You need to connect to Veeva Engage using the following link: $$ LinkVeevaCall $$ Below you will find the references and the scenario defined for the Buon Coaching call! The Perfect Call Team "></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-center">
+                        <div class="col-md-12 mt-3">
+                            <div class="d-flex align-items-center">
+                                <div class="form-group row">
+                                    <label class="col-sm-12  col-form-label"> <strong id="Communications3"></strong>
+                                    </label>
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" type="checkbox" id="PC_Checkbox3">
+                                        <label class="form-check-label" for="gridCheck"
+                                            id="CommunicationsCheckbox1">Attach information and Call scenario at the end
+                                            of the communication</label> <br>
+                                        <label class="form-check-label" for="gridCheck" id="CommunicationsCheckbox2">Use
+                                            the following placeholders in the text:
+                                            $$ LinkVeevaCall $$</label>
+                                    </div>
+                                    <textarea class="form-control col-sm-12" id="PC_Content3" rows="10"
+                                        placeholder=" Dear Colleague, you are receiving this email as you have planned a coaching session in Perfect Call. We remind you that to access the session you will need to open the connection by connecting directly to the Call previously created in Veeva Engage. Below you will find the references and the scenario defined for the Buon Coaching call! The Perfect Call Team  "></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="heading7">
+                <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
+                        data-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
+                        Manage access denied emails
+                    </button>
+                </h2>
+            </div>
+            <div id="collapse7" class="collapse" aria-labelledby="heading7" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div class="d-flex justify-content-center col-md-12">
+                        <div class="col-md-12 mt-3 ">
+                            <div class="d-flex align-items-center ">
+                                <label for="exampleFormControlSelect1 m-2" id="AMSeleziona_Utente">Seleziona
+                                    Utente</label>
+                                <!-- the HTML element use to load the people picker -->
+                                <!-- <div id="ppcontainerid" class="ppcontainer m-2">
+                                    <div id="peoplePickerDiv2"><a id="AMLoadingPeoplePicker"></a></div>
+                                </div> -->
+                                <input type="text" class="form-control" id="VeevaLink">
+
+                                <button class="btn btn-primary rounded-circle m-2" id="addPeopplearea"> <strong
+                                        class="text-light" style="font-size: large;">+</strong> </button>
+                            </div>
+                            <textarea class="form-control col-md-12" id="UsersTargeted" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="heading8">
+                <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse"
+                        data-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
+                        Manage the VeevaLink
+                    </button>
+                </h2>
+            </div>
+            <div id="collapse8" class="collapse" aria-labelledby="heading8" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div class="d-flex justify-content-center col-md-12">
+                        <div class="col-md-12 mt-3 ">
+                            <div class="form-group">
+                                <label id="MVLabel">VeevaLink</label>
+                                <input type="email" class="form-control" id="VeevaLink">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="d-flex justify-content-end  mt-3 ">
+        <button class="btn text-white col-md-2" id="salvaConfigurationPart"
+            style="background-color: #24252A;">SAVE</button>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+<div class="modal fade" id="createQnAModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered ">
+        <div class="modal-content">
+            <div class="modal-header ">
+                <!-- <img src="img/boehringer-logo.png" alt=""> -->
+                <h3 id="CreateQnATitle">Create New Q&A</h3>
+            </div>
+            <div class="modal-body">
+                <h4 id="CreateQnAListTitle">List QnA </h4>
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" id="QnABody"
+                    class="table table-striped text-center" width="100%">
+                    <thead class="bg-light">
+                        <tr>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Answer</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of faqList">
+                            <td>{{item.id}}</td>
+                            <td>{{item.title}}</td>
+                            <td>{{item.answer}}</td>
+                            <td>
+                                <button class="btn btn-primary m-1" (click)="getQnAById(item)">Edit</button>
+                                <button class="btn btn-danger m-1" (click)="deleteQnA(item)">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <hr>
+                <h4 id="CreateQnATitleCreateNew">Crea nuova domanda </h4>
+                <h4 id="UpdateQnATitle"></h4>
+                <form action="" [formGroup]="formfaq" (ngSubmit)="submit(formfaq.value)">
+                    <div class="form-group row">
+                        <label for="staticEmail" class="col-sm-4 col-form-label" id="CreateQnAinputTitle">Title</label>
+                        <div class="col-sm-8">
+                            <input type="text" formControlName="title" name="title" class="form-control" id="titleCreationQnA" placeholder="title">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="staticEmail" class="col-sm-4 col-form-label"
+                            id="CreateQnAinputAnswer">Answer</label>
+                        <div class="col-sm-8">
+                            <textarea formControlName="answer" name="answer" class="form-control" id="answerCreationQnA" placeholder="answer"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="staticEmail" class="col-sm-4 col-form-label" id="CreateQnAinputLink">Link</label>
+                        <div class="col-sm-8">
+                            <input type="text" formControlName="linkAnswer" name="linkAnswer" class="form-control" id="linkAnswerCreationQnA" placeholder="url">
+                        </div>
+                    </div>
+                    <!-- <div class="form-group row" id="divOfUploadFile">
+                        <label for="staticEmail" class="col-sm-4 col-form-label"
+                            id="CreateQnAinputAttachment">Attachement</label>
+                        <div class="col-sm-8">
+                            <input type="file" class="form-control-file" name="uploadFile" id="uploadFile">
+                        </div>
+                    </div> -->
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-dark" [hidden]="showBtnUpdateQnA" [disabled]="!formfaq.valid">Save</button>
+                        <button type="button" (click)="updateQnA(formfaq.value)" class="btn btn-dark" [hidden]="!showBtnUpdateQnA" [disabled]="!formfaq.valid">Update</button>
+
+                        <!-- <a class="btn text-white "  id="CreateQnAButtonSave" style="background-color: #24252A;">Save</a> -->
+                        <!-- <a role="button" class="btn text-white " id="UpdateQnAButton"
+                            style="background-color: #24252A;">Update</a> -->
+                        <a href="" class="btn btn-outline-dark" data-dismiss="modal" id="closebuttonqna" #closebuttonqna>Cancel</a>
+                    </div>
+                </form>
+            </div>
+           
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="programDescriptionModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered ">
+        <div class="modal-content">
+            <div class="modal-header ">
+                <!-- <img src="img/boehringer-logo.png" alt=""> -->
+                <h3 id="generalTitle">Change program description</h3>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label id="TitleProgramInput">Title program</label>
+                    <input type="text" class="form-control" id="titleprogram" aria-describedby="emailHelp">
+                </div>
+                <div class="form-group">
+                    <label id="DescriptionProgramInput">Description program</label>
+                    <textarea class="form-control" id="progDesc" rows="15"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a role="button" class="btn text-white " id="updateProgramDescriptionAction"
+                    style="background-color: #24252A;">Update</a>
+                <a href="" class="btn btn-outline-dark" data-dismiss="modal">Cancel</a>
+
+            </div>
+        </div>
+    </div>
