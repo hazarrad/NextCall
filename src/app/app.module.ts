@@ -20,6 +20,8 @@ import { FaqComponent } from './modules/faq/faq.component';
 import { ProgramDescriptionComponent } from './modules/program-description/program-description.component';
 import { RouterModule } from '@angular/router';
 import { loginComponent } from './modules/login/login/login.component';
+import { AvatarModule } from 'ngx-avatar';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +46,8 @@ import { loginComponent } from './modules/login/login/login.component';
     DataTablesModule,
     HttpClientModule,
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AvatarModule
     
   ],
   providers: [],

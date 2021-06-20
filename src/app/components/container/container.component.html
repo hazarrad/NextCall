@@ -5,7 +5,9 @@
     <div class="sidebar-heading">logo </div>
     <hr>
     <div *ngIf=retrievedImage class="d-flex justify-content-center ">
-      <img class="img-thumbnail border-0 rounded-circle" alt="imgUser" [src]="retrievedImage" data-holder-rendered="true" style="width: 180px; height: 180px;">
+      <!-- <img class="img-thumbnail border-0 rounded-circle" alt="imgUser" [src]="retrievedImage" data-holder-rendered="true" style="width: 180px; height: 180px;"> -->
+      <ngx-avatar name="{{user.name}}" size="150">></ngx-avatar>
+
     </div>
 
     <div>
