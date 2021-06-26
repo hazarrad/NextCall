@@ -107,6 +107,7 @@ export class LandingCoacheeComponent implements OnInit {
   //     console.log(data)
   //   });
   // }
+  @ViewChild('closebutton', { static: true }) closebutton;
 
   @ViewChild(DataTableDirective, { static: false })
   dtElement: DataTableDirective;
@@ -138,10 +139,11 @@ export class LandingCoacheeComponent implements OnInit {
     // Do not forget to unsubscribe the event
     this.dtTrigger.unsubscribe();
   }
-  submit(form) {
+  submit() {
+
 
     // body.scheduledEnd=this.datePipe.transform(body.scheduledEnd,'yy-MM-dd');
-    this.session = form;
+    this.session = this.form.value;
 
     //  this.session.ScheduledStart.toString().valueOf=this.form.get('ScheduledStart').value
     // this.session.ScheduledEnd=new Date(this.form.value.scheduledStart);
@@ -150,11 +152,32 @@ export class LandingCoacheeComponent implements OnInit {
     console.log("************************************88")
 
     console.log(this.form.get('scheduledStart').value)
-    // this.session.ScheduledStart=this.form.get('scheduledStart').value;
+    console.log(this.form.get('scheduledEnd').value)
+    console.log(this.form.get('slotStart').value)
+    console.log(this.form.get('slotEnd').value)
 
+    // this.session.ScheduledStart=this.form.get('scheduledStart').value;
+    var newScheduledStart = new Date();
+    newScheduledStart.setDate(this.form.get('scheduledStart').value);
+    newScheduledStart.setTime(this.form.get('slotStart').value)
+    this.session.ScheduledStart = newScheduledStart;
+
+    var newScheduledEnd = new Date();
+    newScheduledEnd.setDate(this.form.get('scheduledEnd').value);
+    newScheduledEnd.setTime(this.form.get('slotEnd').value)
+    this.session.ScheduledEnd = newScheduledEnd;
+
+    console.log(this.session.ScheduledStart)
+    console.log(this.session.ScheduledEnd)
 
     this.sessionService.createSession(this.session).subscribe(data => {
       console.log(data)
+      this.closebutton.nativeElement.click();
+      Swal.fire({
+        title: 'Good job',
+        text: "Your session has been created succesfully",
+        icon: 'success',
+      })
     });
   }
 

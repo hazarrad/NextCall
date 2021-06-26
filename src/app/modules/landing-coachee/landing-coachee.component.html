@@ -71,7 +71,7 @@
         </div>
     </div>
 </div>
-<hr>
+
 <div class="d-flex align-items-top flex-wrap mt-3 col-md-12  p-0  ">
     <h1> Coaching Sessions carried out or in progress</h1>
     <div class="col-md-9 mb-3 ">
@@ -172,7 +172,7 @@
             </div> <!-- Modal Body-->
 
             <div class="modal-body ">
-                <form method="get" [formGroup]="form" (ngSubmit)="submit(form.value)">
+                <form method="get" [formGroup]="form" >
 
                     <div class="text-center">
                         <h5 id="Newsession_subtitle">Create new coaching session</h5>
@@ -390,19 +390,19 @@
                             </div>
                         </div>
                     </div>
-                    <button class="btn text-white" type="submit" style="background-color: #24252A;"
-                        id="Popup_Callform_return_submit">Save</button>
+                    <!-- <button class="btn text-white" type="submit" style="background-color: #24252A;"
+                        id="Popup_Callform_return_submit">Save</button> -->
                 </form>
             </div>
 
 
             <!-- Modal Footer-->
             <div class="modal-footer" id="modalFooter1">
-                <button class="btn text-white" type="submit" style="background-color: #24252A;"
-                    id="Popup_Callform_return_submit">Save</button>
+                <button class="btn text-white" type="button" style="background-color: #24252A;"
+                    id="Popup_Callform_return_submit" (click)="submit()">Save</button>
                 <button class="btn text-white" style="background-color: #24252A;"
                     id="Popup_Callform_return_send">Send</button>
-                <a href="" class="btn btn-outline-dark" data-dismiss="modal" id="Popup_Callform_return">Cancell</a>
+                <a href="" class="btn btn-outline-dark" data-dismiss="modal" id="Popup_Callform_return" #closebutton>Cancell</a>
             </div>
             <!-- Modal Footer-->
             <!-- <div class="modal-footer" id="modalFooter2">

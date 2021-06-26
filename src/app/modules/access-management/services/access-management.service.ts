@@ -12,35 +12,35 @@ export class AccessManagementService {
 
 
   public findAll(): Observable<Users[]> {
-    return this.httpClient.get<Users[]>("https://mcprettycall.herokuapp.com/findAllUsers");
+    return this.httpClient.get<Users[]>("http://localhost:8080/findAllUsers");
   }
 
   // public createUser(user: Users) {
-  //   return this.httpClient.post<Users>("https://mcprettycall.herokuapp.com/createUsers", user);
+  //   return this.httpClient.post<Users>("http://localhost:8080/createUsers", user);
   // }
 
   public createUser(formdata: FormData): Observable<any> {
-    return this.httpClient.post("https://mcprettycall.herokuapp.com/upload", formdata);
+    return this.httpClient.post("http://localhost:8080/upload", formdata);
   }
 
   public updateUser(user: Users): Observable<any> {
-    return this.httpClient.post<Users>("https://mcprettycall.herokuapp.com/updateUserFormData", user);
+    return this.httpClient.post<Users>("http://localhost:8080/updateUserFormData", user);
   }
   
 
   public deleteUser(user: Users) {
-    return this.httpClient.get<Users>("https://mcprettycall.herokuapp.com/deleteUserByID?id=" + user.id, { responseType: 'text' as 'json' });
+    return this.httpClient.get<Users>("http://localhost:8080/deleteUserByID?id=" + user.id, { responseType: 'text' as 'json' });
   }
 
   public getbyid(user: Users) {
-    return this.httpClient.get<Users>("https://mcprettycall.herokuapp.com/getByIDImage?id=" + user.id);
+    return this.httpClient.get<Users>("http://localhost:8080/getByIDImage?id=" + user.id);
   }
  
 
   // public createUser2(user: Users,selectedFile: File) {
   //   const uploadImageData = new FormData();
   //   uploadImageData.append('imageFile', selectedFile, selectedFile.name);
-  //   return this.httpClient.post<Users>('https://mcprettycall.herokuapp.com/upload',user+'&?'+uploadImageData, { observe: 'response' });
+  //   return this.httpClient.post<Users>('http://localhost:8080/upload',user+'&?'+uploadImageData, { observe: 'response' });
   // }
 
   // onUpload() {
