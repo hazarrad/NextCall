@@ -56,7 +56,7 @@ export class LandingCoacheeComponent implements OnInit {
 
     this.form = new FormGroup({
       status: new FormControl(Status.SSN_Draft, Validators.required),
-      scheduledStart: new FormControl('', Validators.required),
+      scheduledStart: new FormControl(new Date(), Validators.required),
       scheduledEnd: new FormControl('', Validators.required),
       slotStart: new FormControl('', Validators.required),
       slotEnd: new FormControl('', Validators.required),
@@ -73,9 +73,23 @@ export class LandingCoacheeComponent implements OnInit {
       scenarioAgenda: new FormControl('', Validators.required),
     });
 
-    this.form.get('scheduledStart').valueChanges.subscribe(value => {
-      this.form.get('scheduledEnd').setValue(value)
-    })
+    // this.form.get('scheduledStart').valueChanges.subscribe(value => {
+    //   this.form.get('scheduledEnd').setValue(value)
+    // })
+
+    
+ 
+this.form.get("scheduledStart").valueChanges.subscribe(selectedValue => {
+  console.log('firstname value changed')
+  console.log(selectedValue)
+  console.log(this.form.get("scheduledStart").value)
+  console.log(this.form.value)    //shows the old first name
+      
+  setTimeout(() => {
+    console.log(this.form.value)   //shows the latest first name
+  })
+     
+})
 
     this.profileForm = this.formBuilder.group({
       'key': ['', Validators.compose([Validators.required])],
@@ -141,34 +155,9 @@ export class LandingCoacheeComponent implements OnInit {
   }
   submit() {
 
-
-    // body.scheduledEnd=this.datePipe.transform(body.scheduledEnd,'yy-MM-dd');
+    console.log("hello world")
     this.session = this.form.value;
 
-    //  this.session.ScheduledStart.toString().valueOf=this.form.get('ScheduledStart').value
-    // this.session.ScheduledEnd=new Date(this.form.value.scheduledStart);
-    // console.log( this.session.ScheduledEnd)
-    // this.session=new Sessions(0,'','','','','','',new Date,new Date(this.form.value.scheduledStart),Status.SSN_New,true,true,'','','','','','','','','','','')
-    console.log("************************************88")
-
-    console.log(this.form.get('scheduledStart').value)
-    console.log(this.form.get('scheduledEnd').value)
-    console.log(this.form.get('slotStart').value)
-    console.log(this.form.get('slotEnd').value)
-
-    // this.session.ScheduledStart=this.form.get('scheduledStart').value;
-    var newScheduledStart = new Date();
-    newScheduledStart.setDate(this.form.get('scheduledStart').value);
-    newScheduledStart.setTime(this.form.get('slotStart').value)
-    this.session.ScheduledStart = newScheduledStart;
-
-    var newScheduledEnd = new Date();
-    newScheduledEnd.setDate(this.form.get('scheduledEnd').value);
-    newScheduledEnd.setTime(this.form.get('slotEnd').value)
-    this.session.ScheduledEnd = newScheduledEnd;
-
-    console.log(this.session.ScheduledStart)
-    console.log(this.session.ScheduledEnd)
 
     this.sessionService.createSession(this.session).subscribe(data => {
       console.log(data)
