@@ -19,7 +19,7 @@ export class LandingCoacheeComponent implements OnInit {
 
   profileForm: FormGroup;
   form: FormGroup;
-  session: Sessions = new Sessions(0, '', '', '', '', '', '', new Date, new Date, Status.SSN_New, true, true, '', '', '', '', '', '', '', '', '', '', '')
+  session: Sessions = new Sessions(0, '', '', '', '', '', '','', new Date, Status.SSN_New, true, true, '', '', '', '', '', '', '', '', '', '', '')
   keys = Object.keys;
   status = Status;
   constructor(private datePipe: DatePipe, private http: HttpClient, private sessionService: SessionServiceService, private formBuilder: FormBuilder) { }
@@ -41,7 +41,7 @@ export class LandingCoacheeComponent implements OnInit {
     console.log("click to showReasonsRejectiondandCancellation")
 
   }
-
+  keysCoach = Object.keys;
   ngOnInit() {
     this.chartCoachee();
     this.dtOptions = {
@@ -51,10 +51,15 @@ export class LandingCoacheeComponent implements OnInit {
     };
 
     this.sessionService.findAllByRole(Roles.Coach).subscribe(data => {
-      this.coachsList = data
+      this.coachsList = data;
+      console.log(this.coachsList)
     })
 
+
+
     this.form = new FormGroup({
+      
+      coachSelected: new FormControl('', Validators.required),
       status: new FormControl(Status.SSN_Draft, Validators.required),
       scheduledStart: new FormControl(new Date(), Validators.required),
       scheduledEnd: new FormControl('', Validators.required),
@@ -77,19 +82,25 @@ export class LandingCoacheeComponent implements OnInit {
     //   this.form.get('scheduledEnd').setValue(value)
     // })
 
+
     
- 
-this.form.get("scheduledStart").valueChanges.subscribe(selectedValue => {
-  console.log('firstname value changed')
-  console.log(selectedValue)
-  console.log(this.form.get("scheduledStart").value)
-  console.log(this.form.value)    //shows the old first name
-      
-  setTimeout(() => {
-    console.log(this.form.value)   //shows the latest first name
-  })
-     
-})
+    this.form.get("coachSelected").valueChanges.subscribe(selectedValue => {
+      console.log(selectedValue)
+    })
+
+    
+
+    this.form.get("scheduledStart").valueChanges.subscribe(selectedValue => {
+      console.log('firstname value changed')
+      console.log(selectedValue)
+      console.log(this.form.get("scheduledStart").value)
+      console.log(this.form.value)    //shows the old first name
+
+      setTimeout(() => {
+        console.log(this.form.value)   //shows the latest first name
+      })
+
+    })
 
     this.profileForm = this.formBuilder.group({
       'key': ['', Validators.compose([Validators.required])],
@@ -121,6 +132,7 @@ this.form.get("scheduledStart").valueChanges.subscribe(selectedValue => {
   //     console.log(data)
   //   });
   // }
+  
   @ViewChild('closebutton', { static: true }) closebutton;
 
   @ViewChild(DataTableDirective, { static: false })
@@ -157,6 +169,8 @@ this.form.get("scheduledStart").valueChanges.subscribe(selectedValue => {
 
     console.log("hello world")
     this.session = this.form.value;
+
+    this.session.ScheduledStart=this.datePipe.transform(new Date(), 'yyyy-MM-dd');
 
 
     this.sessionService.createSession(this.session).subscribe(data => {
