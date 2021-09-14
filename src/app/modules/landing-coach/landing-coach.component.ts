@@ -14,7 +14,7 @@ import { SessionServiceService } from '../sessions/services/session-service.serv
 @Injectable()
 export class LandingCoachComponent implements OnInit {
 
-  session: Sessions = new Sessions(0, '', '', '', '', '', '', new Date, new Date, Status.SSN_New, true, true, '', '', '', '', '', '', '', '', '', '', '')
+  session: Sessions = new Sessions(0, '', '', '', '', '', '',null, new Date, Status.SSN_New, true, true, '', '', '', '', '', '', '', '', '', '', '')
 
 
   SessionsNew: Sessions[] = [];

@@ -1,188 +1,119 @@
-<!-- <div class="colorgraph"></div> -->
-
-<!-- <div class="blank ">
-    <div class="login-container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="text-center m-b-md">
-            <h3>CODSHOP</h3>
-            <small>please login!</small>
-          </div>
-          <div class="hpanel">
-            <div class="panel-body">
-              <form action="#" id="loginForm">
-                <div class="form-group">
-                  <label class="control-label" for="mail">email</label>
-                  <input type="text" placeholder="example@gmail.com" title="Please enter you mail" name="mail" id="mail"
-                    class="form-control" [(ngModel)]="email" />
+<div class=" register">
+  <div class="row pt-4">
+    <div class="col-md-3 register-left">
+      <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
+      <h3>Welcome</h3>
+      <p class="text-left">Pretty Call is portal created with the aim of facilitating the planning of coaching sessions. The platform
+        provides the functionalities needed for efficient planning of such sessions, as well as a procedural integration
+        with Veeva Engage and a process allowing coaches to provide their feedbacks!</p>
+    </div>
+    <div class="col-md-9 register-right">
+      <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="coachee-tab" data-toggle="tab" href="#coachee" role="tab" aria-controls="coachee"
+            aria-selected="true">Coachee</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="coach-tab" data-toggle="tab" href="#coach" role="tab" aria-controls="coach"
+            aria-selected="false">Coach</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="admin-tab" data-toggle="tab" href="#admin" role="tab" aria-controls="admin"
+            aria-selected="false">Admin</a>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="coachee" role="tabpanel" aria-labelledby="coachee-tab">
+          <h3 class="register-heading">Apply as a Coahee</h3>
+          <div class="row register-form d-flex justify-content-center">
+            <div class="col-md-8">
+              <form method="POST" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+                <div class="form-group ">
+                  <label for="exampleInputEmail1">Email address</label>
+                  <input type="email" placeholder="example@gmail.com" title="Please enter you mail" name="mail"
+                    id="mail" class="form-control" formControlName="email">
+                  <div class="alert alert-danger" *ngIf="f.email.touched && f.email.invalid">
+                    <div *ngIf="f.email.errors.required">please put email</div>
+                    <div *ngIf="f.password.errors.pattern">insert a complicated password</div>
+                  </div>
                 </div>
                 <div class="form-group">
-                  <label class="control-label" for="password">Password</label>
+                  <label for="exampleInputEmail1">Password</label>
                   <input type="password" title="Please enter your password" placeholder="********" name="password"
-                    id="password" class="form-control" [(ngModel)]="password" />
+                    id="password" class="form-control" formControlName="password">
+                  <div class="alert alert-danger" *ngIf="f.password.touched && f.password.invalid">
+                    <div *ngIf="f.password.errors.required">please put password</div>
+                    <div *ngIf="f.password.errors.pattern">insert a complicated password</div>
+                  </div>
                 </div>
-                
-                <button class="btn btn-success btn-block" (click)="login()">Login</button>
+                <div class="form-group ">
+                  <input type="submit" [disabled]="!loginForm.valid" class="btnRegister" value="Register" />
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade show" id="coach" role="tabpanel" aria-labelledby="coach-tab">
+          <h3 class="register-heading">Apply as a Coach</h3>
+          <div class="row register-form d-flex justify-content-center">
+            <div class="col-md-8">
+              <form method="POST" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+                <div class="form-group ">
+                  <label for="exampleInputEmail1">Email address</label>
+                  <input type="email" placeholder="example@gmail.com" title="Please enter you mail" name="mail"
+                    id="mail" class="form-control" formControlName="email">
+                  <div class="alert alert-danger" *ngIf="f.email.touched && f.email.invalid">
+                    <div *ngIf="f.email.errors.required">please put email</div>
+                    <div *ngIf="f.password.errors.pattern">insert a complicated password</div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Password</label>
+                  <input type="password" title="Please enter your password" placeholder="********" name="password"
+                    id="password" class="form-control" formControlName="password">
+                  <div class="alert alert-danger" *ngIf="f.password.touched && f.password.invalid">
+                    <div *ngIf="f.password.errors.required">please put password</div>
+                    <div *ngIf="f.password.errors.pattern">insert a complicated password</div>
+                  </div>
+                </div>
+                <div class="form-group ">
+                  <input type="submit" [disabled]="!loginForm.valid" class="btnRegister" value="Register" />
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade show" id="admin" role="tabpanel" aria-labelledby="admin-tab">
+          <h3 class="register-heading">Apply as a Admin</h3>
+          <div class="row register-form d-flex justify-content-center">
+            <div class="col-md-8">
+              <form method="POST" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+                <div class="form-group ">
+                  <label for="exampleInputEmail1">Email address</label>
+                  <input type="email" placeholder="example@gmail.com" title="Please enter you mail" name="mail"
+                    id="mail" class="form-control" formControlName="email">
+                  <div class="alert alert-danger" *ngIf="f.email.touched && f.email.invalid">
+                    <div *ngIf="f.email.errors.required">please put email</div>
+                    <div *ngIf="f.password.errors.pattern">insert a complicated password</div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Password</label>
+                  <input type="password" title="Please enter your password" placeholder="********" name="password"
+                    id="password" class="form-control" formControlName="password">
+                  <div class="alert alert-danger" *ngIf="f.password.touched && f.password.invalid">
+                    <div *ngIf="f.password.errors.required">please put password</div>
+                    <div *ngIf="f.password.errors.pattern">insert a complicated password</div>
+                  </div>
+                </div>
+                <div class="form-group ">
+                  <input type="submit" [disabled]="!loginForm.valid" class="btnRegister" value="Register" />
+                </div>
               </form>
             </div>
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-12 text-center">
-          <strong>CODSHOP</strong> - {{ today | date: 'yyyy' }} Copyright CODSHOP <br />
-        </div>
-      </div>
     </div>
-  </div>
-   -->
-
-<!-- <div class="container "> -->
-<!-- <div class="row bg-dark d-flex align-items-center col-md-12" style="height: 100vh;">
-    <div class="col-md-5 mx-auto">
-      <div id="first">
-        <div class="myform form ">
-          <div class="logo mb-3">
-            <div class="col-md-12 text-center">
-              <h1>Login</h1>
-            </div>
-          </div>
-          <form action="" method="post" name="login">
-            <div class="form-group">
-              <label for="exampleInputEmail1">Email address</label>
-              <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp"
-                placeholder="Enter email">
-            </div>
-            <div class="form-group">
-              <label for="exampleInputEmail1">Password</label>
-              <input type="password" name="password" id="password" class="form-control" aria-describedby="emailHelp"
-                placeholder="Enter Password">
-            </div>
-            <div class="form-group">
-              <p class="text-center">By signing up you accept our <a href="#">Terms Of Use</a></p>
-            </div>
-            <div class="col-md-12 text-center ">
-              <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Login</button>
-            </div>
-            <div class="col-md-12 ">
-              <div class="login-or">
-                <hr class="hr-or">
-                <span class="span-or">or</span>
-              </div>
-            </div>
-            <div class="col-md-12 mb-3">
-              <p class="text-center">
-                <a href="javascript:void();" class="google btn mybtn"><i class="fa fa-google-plus">
-                  </i> Signup using Google
-                </a>
-              </p>
-            </div>
-            <div class="form-group">
-              <p class="text-center">Don't have account? <a href="#" id="signup">Sign up here</a></p>
-            </div>
-          </form>
-
-        </div>
-      </div>
-    </div> -->
-
-<!-- </div> -->
-
-<div class=" d-flex justify-content-between flex-wrap align-items-top col-md-12 m-0 p-0" style="height: 100vh;">
-  <div class="col-md-10 mt-5" style="margin-left: 8%;">
-
-    <h2> <strong> Pretty Call</strong></h2>
-    <p>Pretty Call is portal created with the aim of facilitating the planning of coaching sessions. The platform
-      provides the functionalities needed for efficient planning of such sessions, as well as a procedural integration
-      with Veeva Engage and a process allowing coaches to provide their feedbacks. </p>
-
-  </div>
-  <div class="col-md-6 mt-5 ">
-    <div class=" d-flex justify-content-center align-items-center col-md-12 p-0 m-0">
-      <div class="myform form " style="background-color: #1fa0fc; height: auto;">
-        <div class="logo mb-3">
-          <div class="col-md-12 text-white text-center">
-            <h1>Login</h1>
-          </div>
-        </div>
-        <form method="POST" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
-          <div class="form-group text-white">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" placeholder="example@gmail.com" title="Please enter you mail" name="mail" id="mail"
-              class="form-control" formControlName="email">
-            <div class="alert alert-danger" *ngIf="f.email.touched && f.email.invalid">
-              <div *ngIf="f.email.errors.required">please put email</div>
-              <div *ngIf="f.password.errors.pattern">insert a complicated password</div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="exampleInputEmail1">Password</label>
-            <input type="password" title="Please enter your password" placeholder="********" name="password"
-              id="password" class="form-control" formControlName="password">
-            <div class="alert alert-danger" *ngIf="f.password.touched && f.password.invalid">
-              <div *ngIf="f.password.errors.required">please put password</div>
-              <div *ngIf="f.password.errors.pattern">insert a complicated password</div>
-            </div>
-          </div>
-
-          <div class="col-md-12 mt-4 mb-5 text-center ">
-            <!-- <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm"
-              [disabled]="!loginForm.valid">Login</button> -->
-            <button type="submit" [disabled]="!loginForm.valid" class="col-md-12 btn-get-started scrollto">Sign
-              in</button>
-
-          </div>
-
-        </form>
-
-      </div>
-    </div>
-  </div>
-  <div class="col-md-6  " data-aos="fade-left">
-    <img src="https://image.freepik.com/free-vector/live-webinar-sign-icon_118124-4681.jpg" class="img-fluid" alt="">
   </div>
 </div>
-
-<!-- <div class="d-flex col-md-12 bg-dark justify-content-center align-items-center" style="height: 100vh;">
-    <img src="https://blog.nash.io/content/images/2020/06/team2.png" style="background-position: center;
-    background-repeat: no-repeat;background-size: cover; height: 100%; width: 100%;" alt="">
-
-    <div style="position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%)" class=" d-flex justify-content-center align-items-center col-md-6 " >
-      <div class="myform form bg-light">
-        <div class="logo mb-3">
-          <div class="col-md-12 text-center">
-            <h1>Login</h1>
-          </div>
-        </div>
-        <form method="POST" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
-          <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" placeholder="example@gmail.com" title="Please enter you mail" name="mail" id="mail"
-            class="form-control" formControlName="email">
-            <div class="alert alert-danger" *ngIf="f.email.touched && f.email.invalid">
-              <div *ngIf="f.email.errors.required">please put email</div>
-              <div *ngIf="f.password.errors.pattern">insert a complicated password</div>
-          </div>
-          </div>
-          <div class="form-group">
-            <label for="exampleInputEmail1">Password</label>
-            <input type="password" title="Please enter your password" placeholder="********" name="password"
-            id="password" class="form-control" formControlName="password">
-            <div class="alert alert-danger" *ngIf="f.password.touched && f.password.invalid">
-              <div *ngIf="f.password.errors.required">please put password</div>
-              <div *ngIf="f.password.errors.pattern">insert a complicated password</div>
-          </div>
-          </div>
-          
-          <div class="col-md-12 text-center ">
-            <button type="submit"  class=" btn btn-block mybtn btn-primary tx-tfm" [disabled]="!loginForm.valid">Login</button>
-          </div>       
-          
-        </form>
-
-      </div>
-    </div>
-  </div> -->
