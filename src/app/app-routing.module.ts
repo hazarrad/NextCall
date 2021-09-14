@@ -46,14 +46,14 @@ const routes: Routes = [
     canActivate: [CoacheeGuard],
     children: [
       {
-        path: '', component: LandingCoacheeComponent ,
+        path: '' ,
         children: [
           { path: '', component: LandingCoacheeComponent },
           // { path: 'Coach',component: LandingCoachComponent},
           { path: 'Home',component: LandingCoacheeComponent},
           { path: 'Desc', component: ProgramDescriptionComponent },
           { path: 'QnA', component: FaqComponent },
-          { path: 'login', component: loginComponent },
+          { path: 'login', component: loginComponent }
 
         ]
       }
