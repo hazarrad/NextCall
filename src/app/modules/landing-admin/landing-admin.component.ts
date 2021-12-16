@@ -72,10 +72,24 @@ export class LandingAdminComponent implements OnInit {
       data: {
         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
         datasets: [{
-          label: '# of Votes',
+          label: '# of Completed',
           data: [12, 19, 3, 5, 2, 3],
           backgroundColor: 'rgba(54, 162, 235, 0.2)',
           borderColor:'rgba(54, 162, 235, 1)',
+          borderWidth: 1
+        },
+        {
+          label: '# of Planned',
+          data: [2, 9, 43, 57, 21, 37],
+          backgroundColor: 'rgba(255, 159, 64, 0.2)',
+          borderColor:'rgba(255, 159, 64, 1)',
+          borderWidth: 1
+        },
+        {
+          label: '# of Feedbacks',
+          data: [78, 81, 7, 22, 17, 26],
+          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+          borderColor:'rgba(75, 192, 192, 1)',
           borderWidth: 1
         }]
       },

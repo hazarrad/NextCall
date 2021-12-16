@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DataTableDirective } from 'angular-datatables';
-import { Chart } from 'node_modules/chart.js'
+import { Chart } from 'node_modules/chart.js';
 import { Subject } from 'rxjs';
 import Swal from 'sweetalert2';
 import { Sessions, Status } from '../sessions/services/model/sessionModel';
@@ -19,7 +19,7 @@ export class LandingCoacheeComponent implements OnInit {
 
   profileForm: FormGroup;
   form: FormGroup;
-  session: Sessions = new Sessions(0, '', '', '', '', '', '','', new Date, Status.SSN_New, true, true, '', '', '', '', '', '', '', '', '', '', '')
+  session: Sessions;
   keys = Object.keys;
   status = Status;
   constructor(private datePipe: DatePipe, private http: HttpClient, private sessionService: SessionServiceService, private formBuilder: FormBuilder) { }
@@ -58,10 +58,10 @@ export class LandingCoacheeComponent implements OnInit {
 
 
     this.form = new FormGroup({
-      
+
       coachSelected: new FormControl('', Validators.required),
       status: new FormControl(Status.SSN_Draft, Validators.required),
-      scheduledStart: new FormControl(new Date(), Validators.required),
+      scheduledStart: new FormControl('', Validators.required),
       scheduledEnd: new FormControl('', Validators.required),
       slotStart: new FormControl('', Validators.required),
       slotEnd: new FormControl('', Validators.required),
@@ -83,12 +83,12 @@ export class LandingCoacheeComponent implements OnInit {
     // })
 
 
-    
+
     this.form.get("coachSelected").valueChanges.subscribe(selectedValue => {
       console.log(selectedValue)
     })
 
-    
+
 
     this.form.get("scheduledStart").valueChanges.subscribe(selectedValue => {
       console.log('firstname value changed')
@@ -132,7 +132,7 @@ export class LandingCoacheeComponent implements OnInit {
   //     console.log(data)
   //   });
   // }
-  
+
   @ViewChild('closebutton', { static: true }) closebutton;
 
   @ViewChild(DataTableDirective, { static: false })
@@ -167,11 +167,11 @@ export class LandingCoacheeComponent implements OnInit {
   }
   submit() {
 
-    console.log("hello world")
+    this.form.patchValue({
+      scheduledStart: this.form.get("scheduledStart").value + 'T' + this.form.get("slotStart").value + ':00',
+      scheduledEnd: this.form.get("scheduledStart").value + 'T' + this.form.get("slotEnd").value + ':00'
+    });
     this.session = this.form.value;
-
-    this.session.ScheduledStart=this.datePipe.transform(new Date(), 'yyyy-MM-dd');
-
 
     this.sessionService.createSession(this.session).subscribe(data => {
       console.log(data)

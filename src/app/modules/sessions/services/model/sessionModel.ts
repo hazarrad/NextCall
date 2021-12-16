@@ -32,7 +32,7 @@ export class Sessions {
     CoacheeID: string;
     CoacheeEmail: string;
     coacheeName: string;
-    ScheduledStart: string;
+    ScheduledStart: Date;
     ScheduledEnd: Date;
     status: Status;
     ScenarioPrimaVisita: boolean;
@@ -49,6 +49,9 @@ export class Sessions {
     ScenarioObiettivi: string;
     ScenarioAgenda: string;
 
+    
+
+   
     constructor(ID: number,
         CoachID: string,
         CoachEmail: string,
@@ -56,7 +59,7 @@ export class Sessions {
         CoacheeID: string,
         CoacheeEmail: string,
         coacheeName: string,
-        ScheduledStart: string,
+        ScheduledStart: Date,
         ScheduledEnd: Date,
         status: Status,
         ScenarioPrimaVisita: boolean,
