@@ -9,6 +9,7 @@ import { NavigationComponent } from './main-layout/navigation/navigation.compone
 import { AccessManagementComponent } from './modules/access-management/access-management.component';
 import { ConfigurationComponent } from './modules/configuration/configuration.component';
 import { FaqComponent } from './modules/faq/faq.component';
+import { IndexComponent } from './modules/index/index.component';
 import { LandingAdminComponent } from './modules/landing-admin/landing-admin.component';
 import { LandingCoachComponent } from './modules/landing-coach/landing-coach.component';
 import { LandingCoacheeComponent } from './modules/landing-coachee/landing-coachee.component';
@@ -79,7 +80,8 @@ const routes: Routes = [
     ]
   },
 
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: 'index', pathMatch: 'full' },
+  { path: 'index', component: IndexComponent },
   { path: 'login', component: loginComponent },
   { path: 'Page-Not-Found', component: PageNotFoundComponent },
   { path: '**', redirectTo: '/Page-Not-Found', pathMatch: 'full' }

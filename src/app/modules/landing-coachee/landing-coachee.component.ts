@@ -1,9 +1,9 @@
 import { DatePipe } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DataTableDirective } from 'angular-datatables';
 import { Chart } from 'node_modules/chart.js';
+import { Session } from 'protractor';
 import { Subject } from 'rxjs';
 import Swal from 'sweetalert2';
 import { Sessions, Status } from '../sessions/services/model/sessionModel';
@@ -17,177 +17,161 @@ import { SessionServiceService } from '../sessions/services/session-service.serv
 })
 export class LandingCoacheeComponent implements OnInit {
 
-  profileForm: FormGroup;
-  form: FormGroup;
-  session: Sessions;
-  keys = Object.keys;
-  status = Status;
-  constructor(private datePipe: DatePipe, private http: HttpClient, private sessionService: SessionServiceService, private formBuilder: FormBuilder) { }
-  dtOptions: DataTables.Settings = {};
-  postsCoachee;
+  constructor(private elementRef: ElementRef, private sessionService: SessionServiceService, private formBuilder: FormBuilder) { }
 
-  role: Roles;
+  //DataTables
+  @ViewChild(DataTableDirective, { static: false })
+  dtElement: DataTableDirective;
+  dtOptions: any = {};
+  dtTrigger: Subject<any> = new Subject<any>();
+  dtTrigger2: Subject<any> = new Subject<any>();
 
+  // Lists data
   coachsList: Users[] = [];
+  myFood: any;
   sessionsList: Sessions[] = [];
+  sessionsOfLastMonth: number = 0;
+  sessionsOfLast3Months: number = 0;
 
-  showDataEvaluationform() {
+  // Forms  
+  createSessionForm: FormGroup = new FormGroup({
+    coach: new FormControl('', Validators.required),
+    coachee: new FormControl(JSON.parse(sessionStorage.getItem('connectedUser')), Validators.required),
+    status: new FormControl('', Validators.required),
+    scheduledStart: new FormControl('', Validators.required),
+    scheduledEnd: new FormControl('', Validators.required),
+    slotStart: new FormControl('', Validators.required),
+    slotEnd: new FormControl('', Validators.required),
+    scenarioAreaTerapeutica: new FormControl('', Validators.required),
+    scenarioKeyMessage: new FormControl('', Validators.required),
+    scenarioCompetitor: new FormControl('', Validators.required),
+    scenarioContext1: new FormControl('', Validators.required),
+    scenarioContext2: new FormControl('', Validators.required),
+    scenarioTerritorio: new FormControl('', Validators.required),
+    scenarioDigitalProfile: new FormControl('', Validators.required),
+    scenarioCMVProfile: new FormControl('', Validators.required),
+    scenarioAdoption: new FormControl('', Validators.required),
+    scenarioObiettivi: new FormControl('', Validators.required),
+    scenarioAgenda: new FormControl('', Validators.required),
+  });
 
 
-    console.log("click to showDataEvaluationform")
-  }
 
-  showReasonsRejectiondandCancellation() {
-    console.log("click to showReasonsRejectiondandCancellation")
+  //Models
+  session: Sessions;
+  status: Status;
+  selectedCoach: number;
+  // childs
+  @ViewChild('closebutton', { static: true }) closebutton;
 
-  }
-  keysCoach = Object.keys;
   ngOnInit() {
+    this.sessionService.findAll().subscribe(data => { this.sessionsList = data; this.dtTrigger.next() })
+    this.sessionService.findAllByRole(Roles.Coach).subscribe(data => { this.coachsList = data; this.dtTrigger2.next() })
+    this.callKPI();
     this.chartCoachee();
+    this.initDataTablesConfig();
+
+    this.createSessionForm.get("coach").valueChanges.subscribe(selectedValue => { this.selectedCoach = selectedValue; })
+
+
+
+  }
+
+  callKPI() {
+    this.sessionService.getAllByMonth(Status.SSN_Draft, 1).subscribe(data => { this.sessionsOfLastMonth = data });
+    this.sessionService.getAllByMonth(Status.SSN_Draft, 3).subscribe(data => { this.sessionsOfLast3Months = data });
+  }
+
+  initDataTablesConfig() {
+    // this.dtOptions = {
+    //   pagingType: 'full_numbers',
+    //   pageLength: 5,
+    //   lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+    // };
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 5,
       lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+      dom: "B<'d-flex justify-content-between align-items-center mt-2' lf>rt<'d-flex justify-content-between align-items-center' ip>",
+
+      initComplete: function (settings, json) {
+        $('.button').removeClass('dt-button');
+      },
+
+      buttons: [
+
+        {
+          extend: 'excel',
+          text: 'XLS',
+          className: 'table-button button btn btn-success',
+          exportOptions: {
+            columns: ':visible'
+          }
+        },
+        {
+          extend: 'csv',
+          text: 'CSV',
+          className: 'table-button button btn btn-primary',
+          exportOptions: {
+            columns: ':visible'
+          }
+
+        },
+        {
+          sExtends:    "text",
+          fnClick: function () {
+            alert('Mouse click');
+            console.log("yeeeep")
+          },
+          text: 'test',
+          className: ' table-button button btn btn-success float-right',
+          exportOptions: {
+            columns: ':visible'
+          }
+        },
+
+      ]
+
+
+
+
     };
-
-    this.sessionService.findAllByRole(Roles.Coach).subscribe(data => {
-      this.coachsList = data;
-      console.log(this.coachsList)
-    })
-
-
-
-    this.form = new FormGroup({
-
-      coachSelected: new FormControl('', Validators.required),
-      status: new FormControl(Status.SSN_Draft, Validators.required),
-      scheduledStart: new FormControl('', Validators.required),
-      scheduledEnd: new FormControl('', Validators.required),
-      slotStart: new FormControl('', Validators.required),
-      slotEnd: new FormControl('', Validators.required),
-      scenarioAreaTerapeutica: new FormControl('', Validators.required),
-      scenarioKeyMessage: new FormControl('', Validators.required),
-      scenarioCompetitor: new FormControl('', Validators.required),
-      scenarioContext1: new FormControl('', Validators.required),
-      scenarioContext2: new FormControl('', Validators.required),
-      scenarioTerritorio: new FormControl('', Validators.required),
-      scenarioDigitalProfile: new FormControl('', Validators.required),
-      scenarioCMVProfile: new FormControl('', Validators.required),
-      scenarioAdoption: new FormControl('', Validators.required),
-      scenarioObiettivi: new FormControl('', Validators.required),
-      scenarioAgenda: new FormControl('', Validators.required),
-    });
-
-    // this.form.get('scheduledStart').valueChanges.subscribe(value => {
-    //   this.form.get('scheduledEnd').setValue(value)
-    // })
-
-
-
-    this.form.get("coachSelected").valueChanges.subscribe(selectedValue => {
-      console.log(selectedValue)
-    })
-
-
-
-    this.form.get("scheduledStart").valueChanges.subscribe(selectedValue => {
-      console.log('firstname value changed')
-      console.log(selectedValue)
-      console.log(this.form.get("scheduledStart").value)
-      console.log(this.form.value)    //shows the old first name
-
-      setTimeout(() => {
-        console.log(this.form.value)   //shows the latest first name
-      })
-
-    })
-
-    this.profileForm = this.formBuilder.group({
-      'key': ['', Validators.compose([Validators.required])],
-      'value': ['', Validators.compose([Validators.required])],
-    });
-
-    //   this.http.get('http://jsonplaceholder.typicode.com/posts')
-    //   .subscribe(data => {
-    //     this.postsCoachee = data;
-    // });
-    this.sessionService.findAll().subscribe(data => {
-      this.sessionsList = data;
-    })
-
-    // $('#scheduledStart').change(function () {
-    //   var date = $(this).val();
-    //   $('#scheduledEnd').val(date);
-    //   console.log($('#scheduledEnd').val(), 'change')
-    // });
   }
 
-  // addconf(confi:configuration) {
-  //   // TODO: Use EventEmitter with form value
-  //   this.conf=confi;
-  //   console.warn(this.conf);
 
-
-  //   this.sessionService.addconfig(this.conf).subscribe(data => {
-  //     console.log(data)
-  //   });
-  // }
-
-  @ViewChild('closebutton', { static: true }) closebutton;
-
-  @ViewChild(DataTableDirective, { static: false })
-  dtElement: DataTableDirective;
-  dtTrigger: Subject<any> = new Subject<any>();
+  submit() {
+    this.createSessionForm.patchValue({
+      status: Status.SSN_Draft,
+      scheduledStart: this.createSessionForm.get("scheduledStart").value + 'T' + this.createSessionForm.get("slotStart").value + ':00',
+      scheduledEnd: this.createSessionForm.get("scheduledStart").value + 'T' + this.createSessionForm.get("slotEnd").value + ':00'
+    });
+    this.session = this.createSessionForm.value;
+    console.log("final" + JSON.stringify(this.session))
+    this.sessionService.createSession(this.session).subscribe(data => {
+      console.log(data)
+      this.rerender();
+      this.closebutton.nativeElement.click();
+      this.toast("Your session has been created succesfully");
+    });
+  }
 
   rerender(): void {
     // Destroy the table first
     this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
       dtInstance.destroy();
-      // Call the dtTrigger to rerender again
-      // this.dtTrigger.next();
     }).then(() => {
       this.sessionService.findAll().subscribe((data) => {
-        this.postsCoachee = data;
+        this.sessionsList = data;
         this.dtTrigger.next();
       }, (err) => {
         console.log('-----> err', err);
-      })
+      });
+      this.callKPI();
     })
-    // this.users = [];
-    // this.accessServices.findAll().subscribe((data) => {
-    // this.users = data;
-
-    // }, (err) => {
-    //   console.log('-----> err', err);
-    // })
-  }
-  ngOnDestroy(): void {
-    // Do not forget to unsubscribe the event
-    this.dtTrigger.unsubscribe();
-  }
-  submit() {
-
-    this.form.patchValue({
-      scheduledStart: this.form.get("scheduledStart").value + 'T' + this.form.get("slotStart").value + ':00',
-      scheduledEnd: this.form.get("scheduledStart").value + 'T' + this.form.get("slotEnd").value + ':00'
-    });
-    this.session = this.form.value;
-
-    this.sessionService.createSession(this.session).subscribe(data => {
-      console.log(data)
-      this.closebutton.nativeElement.click();
-      Swal.fire({
-        title: 'Good job',
-        text: "Your session has been created succesfully",
-        icon: 'success',
-      })
-    });
   }
 
-  removeCall() {
-    // var data = {
-    //   ID: rowID,
-    // };
+
+  removeCall(id) {
     Swal.fire({
       title: "Are you sure?",
       text: "If you delete this session you will no longer be able to recover it and you will have to create a new one!",
@@ -198,21 +182,17 @@ export class LandingCoacheeComponent implements OnInit {
       cancelButtonText: "Cancel",
       confirmButtonText: "Yes",
     }).then((result) => {
-      // if (result.isConfirmed) {
-      // $SP().list("Sessions").remove(data)
-      //   .then(function () {
-      //     bodySessionsCoachee.row('.selected').remove().draw(false);
-      //     Swal.fire({
-      //       icon: 'success',
-      //       title: i18n[lang].Coachee_Home.removeDraft_Sweet_TitleDone,
-      //       confirmButtonText: i18n[lang].Coachee_Home.removeDraft_Sweet_ok,
-      //     })
-      //   })
-      // }
+      if (result.isConfirmed) {
+        this.sessionService.deleteSessionById(id).subscribe(data => {
+          this.toast(data);
+          this.rerender();
+        })
+      }
     })
   }
 
-  CancellCallPlanifica() {
+
+  CancellCallPlanifica(session: Sessions) {
     Swal.fire({
       icon: 'error',
       input: 'textarea',
@@ -223,53 +203,98 @@ export class LandingCoacheeComponent implements OnInit {
       confirmButtonColor: "#24252A",
       text: "You have chosen to cancel an already scheduled session. Before proceeding please enter a reason.",
       preConfirm: (result) => {
-        // if (result) {
-        //   var today = new Date();
-        //   var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-        //   var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-        //   const dateTime = date + ' ' + time;
-        //   const answers = result
-
-        //   var data = {
-        //     ID: rowID,
-        //     Status: 'SSN_Cancelled',
-        //     CancelledDate: dateTime,
-        //     CancellationReason: answers,
-        //     CancelledBy: currentuserId,
-        //     CancelledBy_x003a_Name: currentUserName,
-        //     CancelledBy_x003a_Email: currentEmail
-        //   };
-
-        //   $SP().list("Sessions").update(data)
-        //     .then(function () {
-        //       Swal.fire({
-        //         icon: 'success',
-        //         title: i18n[lang].Coachee_Home.provideURL_Sweet_TitleDone,
-        //         confirmButtonText: i18n[lang].Coachee_Home.provideURL_Sweet_ok,
-        //       })
-        //       $SP().list("Sessions").get({
-        //         fields: "ID,CoachID_x003a_Name,CoacheeID_x003a_Name,Status,Created,ScheduledStart,ScheduledEnd,ScenarioAreaTerapeutica,ScenarioKeyMessage,ScenarioCompetitor,ScenarioContext1,ScenarioContext2,ScenarioTerritorio,ScenarioPrimaVisita,ScenarioKOL,ScenarioDigitalProfile,ScenarioCompetitorShare,ScenarioCMVProfile,ScenarioAdoption,ScenarioObiettivi,ScenarioAgenda,CoacheeComment",
-        //         where: "ID = '" + rowID + "'"
-        //       }).then(function (data) {
-        //         var objData;
-        //         for (var i = 0; i < data.length; i++) {
-        //           objData = [
-        //             data[i].getAttribute("ID"),
-        //             $SP().cleanResult(data[i].getAttribute("CoachID_x003a_Name")),
-        //             data[i].getAttribute("ScheduledStart"),
-        //             changeStatusByI18n(data[i].getAttribute("Status")),
-        //             showActionsByStatus(data[i].getAttribute("Status"), Number(data[i].getAttribute("ID"))),
-        //           ]
-        //         }
-        //         bodySessionsCoachee.row('.selected').data(objData).draw();
-        //       })
-        //     })
-        // } else {
-        //   Swal.showValidationMessage(i18n[lang].Coachee_Home.provideURL_Sweet_ValidtaionMessage)
-        // }
+        if (result) {
+          session.status = Status.SSN_Cancelled;
+          session.cancellationReason = result;
+          session.cancelledBy = JSON.parse(sessionStorage.getItem('connectedUser')).id;
+          this.sessionService.editSessionbyid(session).subscribe(data => {
+            this.toast('Cancelled in successfully');
+          });
+        }
       }
     })
   }
+
+  toast(title) {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+    Toast.fire({
+      icon: 'success',
+      title: title
+    })
+  }
+
+
+  RefusalAndCancellationReasons(session: Sessions) {
+    var reason;
+    var reasonOf;
+    switch (session.status) {
+      case Status.SSN_Cancelled:
+        reasonOf = "Cancellation"
+        reason = session.cancellationReason
+        break;
+      case Status.SSN_Rejected:
+        reasonOf = "Refusal"
+        reason = "some refusal reason"
+        break;
+      default:
+        break;
+    }
+    Swal.fire({
+      title: '<strong>Reason Of ' + reasonOf + '</strong>',
+      icon: 'info',
+      html: reason,
+      showCloseButton: true,
+    })
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   async provideURL() {
     var urlValue;
@@ -401,28 +426,22 @@ export class LandingCoacheeComponent implements OnInit {
     var myChart = new Chart(ctx, {
       type: 'line',
       data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-          label: '# of Sessions',
-          data: [12, 19, 3, 5, 2, 3],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)'
-          ],
-          borderColor: [
-            'rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)'
-          ],
-          borderWidth: 1
-        }]
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        datasets: [
+          {
+            label: '# New Sessions',
+            data: [1, 15, 3, 18, 1, 9, 21, 5, 5, 6, 7, 14],
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgba(0, 0, 255, 1)',
+            borderWidth: 1
+          },
+          {
+            label: '# Completed Sessions',
+            data: [7, 3, 19, 2, 10, 5, 33, 4, 25, 8, 32, 3],
+            backgroundColor: 'rgba(0, 0, 255, 0.2)',
+            borderColor: 'rgba(0, 0, 255, 1)',
+            borderWidth: 1
+          }]
       },
       options: {
         scales: {
@@ -430,7 +449,13 @@ export class LandingCoacheeComponent implements OnInit {
             ticks: {
               beginAtZero: true
             }
-          }]
+          }],
+          x: {
+            type: 'time',
+            time: {
+              unit: 'month'
+            }
+          }
         }
       }
     });

@@ -13,7 +13,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class loginComponent implements OnInit {
-  userres: Users = new Users('', null, null, true, '', '', null, new Date, '', new Date, '', '');
+  userres: Users ;
 
   loginForm = new FormGroup({
     email: new FormControl("", Validators.required),
@@ -58,28 +58,29 @@ export class loginComponent implements OnInit {
     return this.loginForm.controls;
   }
 
-  login() {
 
+
+
+  login() {
+  
+   
     this.email = this.loginForm.get('email').value;
     this.password = this.loginForm.get('password').value;
 
     console.log(this.email + "  " + this.password)
-
     this.loginService.login(this.email, this.password)
       .subscribe(userData => {
         sessionStorage.clear();
         if (userData != null && userData.password == this.password) {
-          if (userData.isActive === true) {
             this.redirectURL = `${userData.role}`;
             this.isloggedIn = true;
             sessionStorage.setItem('isloggedIn', JSON.stringify(this.isloggedIn));
             sessionStorage.setItem('connectedUser', JSON.stringify(userData));
             this.router.navigate([this.redirectURL])
-            userData.lastLoginDate = new Date();
-            this.accessServices.updateUser(userData);
-          } else {
-            this.whenAccessIsDenied()
-          }
+            userData.lastLoginDate=new Date();
+            console.log("userData "+JSON.stringify(userData))
+           this.accessServices.updateUser(userData).subscribe((data) => {})
+        
         } else {
           this.whenLoginIsWrong();
           this.isloggedIn = false;
@@ -91,7 +92,7 @@ export class loginComponent implements OnInit {
     Swal.fire({
       icon: 'error',
       title: 'Oops...',
-      text: 'Something went wrong!',
+      text: 'Something went wrong try again!',
     })
   }
 
@@ -103,11 +104,14 @@ export class loginComponent implements OnInit {
     })
   }
 
-  whenAccessIsDenied() {
+
+
+  
+  sweetsuccess() {
     Swal.fire({
-      icon: 'error',
+      icon: 'success',
       title: 'Access',
-      text: "Sorry you don't have access to this apllication!",
+      text: "Your data has updated!",
     })
   }
 }

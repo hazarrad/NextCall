@@ -1,3 +1,6 @@
+import { Users } from "./Users";
+
+
 export enum Status {
     SSN_Draft = "SSN_Draft",
     SSN_New = "SSN_New",
@@ -6,7 +9,8 @@ export enum Status {
     SSN_Feedbacks = "SSN_Feedbacks",
     SSN_Completed = "SSN_Completed",
     SSN_Cancelled = "SSN_Cancelled",
-    SSN_Rejected = "SSN_Rejected"
+    SSN_Rejected = "SSN_Rejected",
+    SSN_Draf = "SSN_Draf"
 }
 
 // export class configuration {
@@ -25,78 +29,73 @@ export enum Status {
 
 export class Sessions {
 
-    ID: number;
-    CoachID: string;
-    CoachEmail: string;
-    coachName: string;
-    CoacheeID: string;
-    CoacheeEmail: string;
-    coacheeName: string;
-    ScheduledStart: Date;
-    ScheduledEnd: Date;
+    id: number;
+    coachID: Users;
+    coachee_id: Users;
+    scheduledStart: Date;
+    scheduledEnd: Date;
     status: Status;
-    ScenarioPrimaVisita: boolean;
-    ScenarioKOL: boolean;
-    ScenarioAreaTerapeutica: string;
-    ScenarioKeyMessage: string;
-    ScenarioCompetitor: string;
-    ScenarioContext1: string;
-    ScenarioContext2: string;
-    ScenarioDigitalProfile: string;
-    ScenarioTerritorio: string;
-    ScenarioCMVProfile: string;
-    ScenarioAdoption: string;
-    ScenarioObiettivi: string;
-    ScenarioAgenda: string;
+    scenarioPrimaVisita: boolean;
+    scenarioKOL: boolean;
+    scenarioAreaTerapeutica: string;
+    scenarioKeyMessage: string;
+    scenarioCompetitor: string;
+    scenarioContext1: string;
+    scenarioContext2: string;
+    scenarioDigitalProfile: string;
+    scenarioTerritorio: string;
+    scenarioCMVProfile: string;
+    scenarioAdoption: string;
+    scenarioObiettivi: string;
+    scenarioAgenda: string;
+    cancellationReason: string;
+    cancelledBy: string;
 
-    
 
-   
-    constructor(ID: number,
-        CoachID: string,
-        CoachEmail: string,
-        coachName: string,
-        CoacheeID: string,
-        CoacheeEmail: string,
-        coacheeName: string,
-        ScheduledStart: Date,
-        ScheduledEnd: Date,
+
+    constructor(id: number,
+        coachID: Users,
+        coachee_id: Users,
+        scheduledStart: Date,
+        scheduledEnd: Date,
         status: Status,
-        ScenarioPrimaVisita: boolean,
-        ScenarioKOL: boolean,
-        ScenarioAreaTerapeutica: string,
-        ScenarioKeyMessage: string,
-        ScenarioCompetitor: string,
-        ScenarioContext1: string,
-        ScenarioContext2: string,
-        ScenarioDigitalProfile: string, ScenarioTerritorio: string,
-        ScenarioCMVProfile: string,
-        ScenarioAdoption: string,
-        ScenarioObiettivi: string,
-        ScenarioAgenda: string) {
-        this.ID = ID;
-        CoachID = this.CoachID;
-        CoachEmail = this.CoachEmail;
-        coachName = this.coachName;
-        CoacheeID = this.CoacheeID;
-        CoacheeEmail = this.CoacheeEmail;
-        coacheeName = this.coacheeName;
-        ScheduledStart = this.ScheduledStart;
-        ScheduledEnd = this.ScheduledEnd;
-        status = this.status;
-        ScenarioPrimaVisita = this.ScenarioPrimaVisita;
-        ScenarioKOL = this.ScenarioKOL;
-        ScenarioAreaTerapeutica = this.ScenarioAreaTerapeutica;
-        ScenarioKeyMessage = this.ScenarioKeyMessage;
-        ScenarioCompetitor = this.ScenarioCompetitor;
-        ScenarioContext1 = this.ScenarioContext1;
-        ScenarioContext2 = this.ScenarioContext2;
-        ScenarioDigitalProfile = this.ScenarioDigitalProfile,
-            ScenarioTerritorio = this.ScenarioTerritorio;
-        ScenarioCMVProfile = this.ScenarioCMVProfile;
-        ScenarioAdoption = this.ScenarioAdoption;
-        ScenarioObiettivi = this.ScenarioObiettivi;
-        ScenarioAgenda = this.ScenarioAgenda;
+        scenarioPrimaVisita: boolean,
+        scenarioKOL: boolean,
+        scenarioAreaTerapeutica: string,
+        scenarioKeyMessage: string,
+        scenarioCompetitor: string,
+        scenarioContext1: string,
+        scenarioContext2: string,
+        scenarioDigitalProfile: string,
+        scenarioTerritorio: string,
+        scenarioCMVProfile: string,
+        scenarioAdoption: string,
+        scenarioObiettivi: string,
+        scenarioAgenda: string,
+        cancellationReason: string,
+        cancelledBy: string,) {
+
+        this.id = id;
+        this.coachID = coachID;
+        this.coachee_id = coachee_id;
+        this.scheduledStart = scheduledStart;
+        this.scheduledEnd = scheduledEnd;
+        this.status = status;
+        this.scenarioPrimaVisita = scenarioPrimaVisita;
+        this.scenarioKOL = scenarioKOL;
+        this.scenarioAreaTerapeutica = scenarioAreaTerapeutica;
+        this.scenarioKeyMessage = scenarioKeyMessage;
+        this.scenarioCompetitor = scenarioCompetitor;
+        this.scenarioContext1 = scenarioContext1;
+        this.scenarioContext2 = scenarioContext2;
+        this.scenarioDigitalProfile = scenarioDigitalProfile;
+        this.scenarioTerritorio = scenarioTerritorio;
+        this.scenarioCMVProfile = scenarioCMVProfile;
+        this.scenarioAdoption = scenarioAdoption;
+        this.scenarioObiettivi = scenarioObiettivi;
+        this.scenarioAgenda = scenarioAgenda;
+        this.cancellationReason = cancellationReason;
+        this.cancelledBy = cancelledBy;
 
     }
 

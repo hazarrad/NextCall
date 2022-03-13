@@ -23,7 +23,7 @@ export class AccessManagementComponent implements OnInit {
 
   showUploadImg: boolean = true;
   role: Roles;
-  user: Users = new Users('', null, null, true, '', '', '', new Date, '', new Date, '', '');
+  user: Users ;
   
   showBtnAddUser: boolean = true;
   showBtnUpdateUser: boolean = false;
@@ -250,7 +250,7 @@ export class AccessManagementComponent implements OnInit {
     // }
     // })
   }
-  public selectedRow: Users = new Users('', null, null, true, '', '', '', new Date, '', new Date, '', '');
+  public selectedRow: Users ;
 
   reset() {
     this.showBtnAddUser = true;
@@ -297,14 +297,14 @@ export class AccessManagementComponent implements OnInit {
     this.selectedRow = user;
     console.log(this.selectedRow)
     // if(user.id != null)
-    this.accessServices.getbyid(user).subscribe((res) => {
-      this.base64Data = res.picture;
-      if (this.base64Data != null) {
-        this.imgUrl = 'data:image/jpeg;base64,' + this.base64Data;
-      } else {
-        this.imgUrl = null;
-      }
-    });
+    // this.accessServices.getbyid(user).subscribe((res) => {
+    //   this.base64Data = res.picture;
+    //   if (this.base64Data != null) {
+    //     this.imgUrl = 'data:image/jpeg;base64,' + this.base64Data;
+    //   } else {
+    //     this.imgUrl = null;
+    //   }
+    // });
     this.form = new FormGroup({
       // status: new FormControl(Status.SSN_Draft, Validators.required),
       name: new FormControl(this.selectedRow.name, Validators.required),
@@ -336,7 +336,7 @@ export class AccessManagementComponent implements OnInit {
     // userEdit=this.form;
     userEdit.id = this.selectedRow.id;
 
-    console.log(this.selectedRow.picture)
+    // console.log(this.selectedRow.picture)
     // const uploadImageData = new FormData();
     // uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
     console.log(this.imgUrl)
@@ -395,7 +395,7 @@ export class AccessManagementComponent implements OnInit {
   //   uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
 
   //   //Make a call to the Spring Boot Application to save the image
-  //   this.httpClient.post('https://mcprettycall.herokuapp.com/upload', uploadImageData, { observe: 'response' })
+  //   this.httpClient.post('http://localhost:8080/upload', uploadImageData, { observe: 'response' })
   //     .subscribe((response) => {
   //       if (response.status === 200) {
   //         this.message = 'Image uploaded successfully';
@@ -408,7 +408,7 @@ export class AccessManagementComponent implements OnInit {
   //Gets called when the user clicks on retieve image button to get the image from back end
   // getImage() {
   //   //Make a call to Sprinf Boot to get the Image Bytes.
-  //   this.httpClient.get('https://mcprettycall.herokuapp.com/getByIDImage?id=2').subscribe(
+  //   this.httpClient.get('http://localhost:8080/getByIDImage?id=2').subscribe(
   //     res => {
   //       console.log(res)
   //       console.log('*************************')

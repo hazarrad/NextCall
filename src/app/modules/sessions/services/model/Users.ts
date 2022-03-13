@@ -21,14 +21,14 @@ export enum Profile {
 
 export class Users {
 
-    id: number;
+    id: any;
     name: string;
     role: Roles;
     profile: Profile;
     isActive: boolean;
-    namePic: string;
-    typePic: string;
-    picture: string;
+    // namePic: string;
+    // typePic: string;
+    // picture: string;
     lastLoginDate: Date;
     managerEmail: string;
     dateCeated: Date;
@@ -37,13 +37,14 @@ export class Users {
 
 
     constructor(
+        id: any,
         name: string,
         role: Roles,
         profile: Profile,
         isActive: boolean,
-        namePic: string,
-        typePic: string,
-        picture: string,
+        // namePic: string,
+        // typePic: string,
+        // picture: string,
         lastLoginDate: Date,
         managerEmail: string,
         dateCeated: Date,
@@ -51,13 +52,14 @@ export class Users {
         password: string
     ) {
 
+        this.id=id;
         this.name = name;
         this.role = role;
         this.profile = profile;
         this.isActive = isActive;
-        this.namePic = namePic;
-        this.typePic = typePic;
-        this.picture = picture;
+        // this.namePic = namePic;
+        // this.typePic = typePic;
+        // this.picture = picture;
         this.lastLoginDate = lastLoginDate;
         this.managerEmail = managerEmail;
         this.dateCeated = dateCeated;

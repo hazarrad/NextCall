@@ -1,53 +1,26 @@
-<div class="d-flex  m-0 p-0 justify-content-between  mt-3 col-md-12 flex-wrap   ">
-    <div class="col-md-6 mt-2  pl-0 ml-0">
-        <div class="card ">
+<div class="d-flex  m-0 p-0 justify-content-between mt-3 col-md-12 flex-wrap   ">
+    <div class="col-md-4  mt-3">
+        <div class="card " style="height: 200px;">
             <div class="card-body">
-                <h5 class="card-title align-middle" style="height: 50px;" id="Strength_content">Strong area</h5>
+                <h5 class="card-title align-middle" style="height: 100px;" id="Strength_content">Strong area</h5>
                 <hr>
                 <h5 class="card-text text-center" id="Strength_title">Your Strength Area</h5>
             </div>
         </div>
     </div>
 
-    <div class="col-md-6 mt-2 pr-0 mr-0">
-        <div class="card ">
+    <div class="col-md-4 mt-3">
+        <div class="card " style="height: 200px;">
             <div class="card-body">
-                <h5 class="card-title align-middle" style="height: 50px;" id="Strength_content">Strong area</h5>
+                <h5 class="card-title align-middle" style="height: 100px;" id="Strength_content">Strong area</h5>
                 <hr>
                 <h5 class="card-text text-center" id="Strength_title">Your Weak Area</h5>
             </div>
         </div>
     </div>
-</div>
-<!-- <div class="d-flex  col-md-12 m-0 p-0 flex-wrap"> -->
 
-
-<div class="d-flex align-items-center flex-wrap mt-3 col-md-12  p-0  ">
-    <div class="col-md-3 m-0 p-0  ">
-        <div class="d-flex mt-4 flex-wrap">
-            <div class="col-md-12">
-                <h5 style="height: 30px;" class="mb-4" id="KPI_completed_sessions">N° of Sessions performed in the month
-                </h5>
-                <h2><strong id="TotalSessionsAdmin">5</strong></h2>
-                <hr>
-            </div>
-            <div class="col-md-12">
-                <h5 style="height: 30px;" class="mb-4" id="KPI_planned_sessions">N° of Sessions carried out in the last
-                    3 months</h5>
-                <h2><strong id="totalSessionsPlannedAdmin">3</strong></h2>
-                <hr>
-
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6   m-0 p-0">
-        <!-- *************** chart js line statistic******* -->
-        <div class="col-md-12">
-            <canvas id="myChart2" height="130"></canvas>
-        </div>
-    </div>
-    <div class="col-md-3 m-0 p-0">
-        <div class="card " style="height: 200px;">
+    <div class="col-md-4 mt-3 ">
+        <div class="card ">
             <div class="card-body  text-center">
                 <div style="font-size: 5vh;">
                     <div id="trophy">
@@ -72,10 +45,54 @@
     </div>
 </div>
 
-<div class="d-flex align-items-top flex-wrap mt-3 col-md-12  p-0  ">
-    <h1> Coaching Sessions carried out or in progress</h1>
-    <div class="col-md-9 mb-3 ">
-        <table datatable [dtOptions]="dtOptions" class="table table-condensed table-hover text-center text-secondary">
+<div class="d-flex justify-content-between align-items-top flex-wrap mt-3 col-md-12  p-0  ">
+    <div class="col-md-3 m-0 p-0  ">
+        <div class="d-flex mt-4 flex-wrap">
+            <div class="col-md-12">
+                <h5 style="height: 30px;" class="mb-4" id="KPI_completed_sessions">N° of Sessions performed in the month
+                </h5>
+                <h2><strong id="TotalSessionsAdmin">{{sessionsOfLastMonth}}</strong></h2>
+                <hr>
+            </div>
+            <div class="col-md-12">
+                <h5 style="height: 30px;" class="mb-4" id="KPI_planned_sessions">N° of Sessions carried out in the last
+                    3 months</h5>
+                <h2><strong id="totalSessionsPlannedAdmin">{{sessionsOfLast3Months}}</strong></h2>
+                <hr>
+
+            </div>
+            <div class="col-md-12">
+                <h5 style="height: 30px;" class="mb-4" id="KPI_planned_sessions">N° of Sessions carried out in the last
+                    3 months</h5>
+                <h2><strong id="totalSessionsPlannedAdmin">{{sessionsOfLast3Months}}</strong></h2>
+
+
+            </div>
+
+        </div>
+    </div>
+    <div class="col-md-9   m-0 p-0">
+        <!-- *************** chart js line statistic******* -->
+        <div class="col-md-12">
+            <canvas id="myChart2" height="130"></canvas>
+        </div>
+    </div>
+
+</div>
+
+<div class="d-flex align-items-top flex-wrap mt-3 mb-5 col-md-12  p-0  ">
+    <div class="col-md-9">
+        <h2> Coaching Sessions carried out or in progress</h2>
+        <div class="d-flex justify-content-between flex-row-reverse mb-2 col-md-12 p-0 ">
+            <button class="btn btn-primary m-1" (click)="rerender()"><i class="fas fa-sync-alt"></i> Refresh</button>            
+            <button class="btn text-white m-1" data-toggle="modal" data-target="#ModalCreateCoachingRequest"
+                style="background-color: rgba(0, 0, 87, 0.9);" id="Button_new_request">Create new session</button>
+        </div>
+    </div>
+    <div class="col-md-9 mb-5 ">
+        <table #table1 id="table1" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+            class="table table-condensed table-hover text-center text-secondary">
+
             <thead class="bg-light">
                 <tr>
                     <th>ID Session</th>
@@ -92,29 +109,29 @@
                     <td>{{item.scheduledStart | date: 'dd/MM/yyyy HH:MM'}}</td>
                     <td>{{item.status}}</td>
                     <td>
-                        <a role="button" class="m-1" (click)="removeCall()"><i
+                        <a role="button" class="m-1" (click)="removeCall(item.id)"><i
                                 style=" color:rgb(239, 32, 30); font-size: 20px;" class="fas fa-trash"></i></a>
                         <a role="button" class="m-1" onclick="showDraftCall(' + dataID + ')" data-toggle="modal"
                             data-target="#ModalCreateCoachingRequest"><i style=" color:#58595B; font-size: 20px;"
                                 class="fas fa-clone"></i></a>
-                        <a href="" class="m-1" data-toggle="modal" data-target="#modalSessionDetails"
-                            onclick="showDataSessionform(' + dataID + ')"><i style="font-size: 20px;"
-                                class="fas fa-ellipsis-h"></i></a>
-                        <a role="button" class="m-1" (click)="CancellCallPlanifica()"><i
-                                style=" color:rgb(239, 32, 30); font-size: 20px;" class="fas fa-trash"></i></a>
+                        <a href="" class="m-1" data-toggle="modal" data-target="#modalSessionDetails"><i
+                                style="font-size: 20px;" class="fas fa-ellipsis-h"></i></a>
+                        <a role="button" class="m-1"
+                            *ngIf="!(item.status === 'SSN_Draft' || item.status === 'SSN_Cancelled')"
+                            (click)="CancellCallPlanifica(item)"><i style=" color:rgb(239, 32, 30); font-size: 20px;"
+                                class="fas fa-trash"></i></a>
 
                         <a role="button" class="m-1" (click)="provideURL()"><i
                                 style="color:rgb(255, 186, 8); font-size: 20px;" class="fas fa-calendar-week"></i></a>
 
-                        <a href="" data-toggle="modal" data-target="#MVEFCoachee" (click)="showDataEvaluationform()"
-                            class="m-1"><i style=" color:rgb(43, 186, 101); font-size: 20px;"
-                                class="far fa-comment-dots"></i></a>
+                        <a href="" data-toggle="modal" data-target="#MVEFCoachee" class="m-1"><i
+                                style=" color:rgb(43, 186, 101); font-size: 20px;" class="far fa-comment-dots"></i></a>
                         <a role="button" class="m-1" (click)="commentToCoachee()"><i
                                 style=" color:#FF7272; font-size: 20px;" class="far fa-comment-alt"></i></a>
 
-                        <a href="" data-toggle="modal" data-target="#RejectionCancellationModal" class="m-1"
-                            (click)="showReasonsRejectiondandCancellation()"><i style=" color:#4A69FF; font-size: 20px;"
-                                class="fas fa-eye"></i></a>
+                        <a role="button" *ngIf="item.status == ('SSN_Cancelled' || 'SSN_Rejected')"
+                            (click)="RefusalAndCancellationReasons(item)" class="m-1"><i
+                                style=" color:#4A69FF; font-size: 20px;" class="fas fa-eye"></i></a>
                     </td>
                 </tr>
                 <!-- <tr *ngFor="let post of postsCoachee">
@@ -152,10 +169,8 @@
         </div>
     </div>
 </div>
-<h2>New Coaching request</h2>
-<button class="btn text-white btn-lg mb-5 " data-toggle="modal" data-target="#ModalCreateCoachingRequest"
-    style="background-color: rgba(0, 0, 87, 0.9);" id="Button_new_request">Create new session</button>
-<!-- </div> -->
+
+
 
 <!-- ****************************Modal create coaching request***************************** -->
 <!--Division for Modal-->
@@ -172,7 +187,7 @@
             </div> <!-- Modal Body-->
 
             <div class="modal-body ">
-                <form method="get" [formGroup]="form">
+                <form method="get" [formGroup]="createSessionForm">
 
                     <div class="text-center">
                         <h5 id="Newsession_subtitle">Create new coaching session</h5>
@@ -181,14 +196,17 @@
                     <input type="text" hidden id="rowIdHasBeenSelected">
                     <div class="form-group">
                         <label for="exampleFormControlSelect1" id="Newsession_select_coach"> Select the coah *</label>
-                        <select class="form-control mb-3" formControlName="coachSelected" id="coachSelected">
-                            <option *ngFor="let item of coachsList" [ngValue]="item.id">{{item.name}}
+                        <select class="form-control mb-3" formControlName="coach" id="coach">
+                            <option *ngFor="let item of coachsList" [selected]="item == selectedCoach" [ngValue]="item">
+                                {{item.name}}
                             </option>
                         </select>
 
                         <!-- ********* Coach table***************** -->
-                        <table datatable [dtOptions]="dtOptions"
+
+                            <table #table2 id="table2"  datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger2"
                             class="table table-condensed table-hover text-center text-secondary">
+                
                             <thead class="bg-light">
                                 <tr>
                                     <th>Select Coach</th>
@@ -199,7 +217,11 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let item of coachsList">
-                                    <td>   <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                    <td>
+
+                                        <input type="radio" [checked]="item == selectedCoach" formControlName="coach"
+                                            [value]="item"> {{item.name}}
+
                                     </td>
                                     <td>{{ item.name }}</td>
                                     <td>{{ item.email }}</td>
@@ -221,7 +243,7 @@
                             <label class=" col-form-label" id="slotTimeStartlabel">Start time</label>
                             <input class="form-control" formControlName="slotStart" id="slotStart" type="time"
                                 name="slotStart">
-                                
+
                         </div>
                         <div class="form-group col-md-3">
                             <label class="col-form-label" id="slotTimeEndlabel">End time</label>
@@ -311,7 +333,7 @@
                                 <div class="custom-control custom-switch mt-2">
                                     <input type="checkbox" value="false" class="custom-control-input"
                                         id="scenarioPrimaVisita">
-                                    <label class="custom-control-label" for="primaVestacustomSwitches"></label>
+                                    <label class="custom-control-label" for="scenarioPrimaVisita"></label>
                                 </div>
                             </div>
                         </div>
@@ -390,6 +412,7 @@
                     </div>
                     <!-- <button class="btn text-white" type="submit" style="background-color: #24252A;"
                         id="Popup_Callform_return_submit">Save</button> -->
+
                 </form>
             </div>
 
@@ -397,9 +420,9 @@
             <!-- Modal Footer-->
             <div class="modal-footer" id="modalFooter1">
                 <button class="btn text-white" type="button" style="background-color: #24252A;"
-                    id="Popup_Callform_return_submit" (click)="submit()">Save</button>
-                <button class="btn text-white" style="background-color: #24252A;"
-                    id="Popup_Callform_return_send">Send</button>
+                    id="Popup_Callform_return_submit" [disabled]="disableSlot" (click)="submit()">Save</button>
+                <button class="btn text-white" style="background-color: #24252A;" id="Popup_Callform_return_send"
+                    (click)="submit()">Send</button>
                 <a href="" class="btn btn-outline-dark" data-dismiss="modal" id="Popup_Callform_return"
                     #closebutton>Cancell</a>
             </div>
@@ -776,35 +799,6 @@
             <!-- Modal Footer-->
             <div class="modal-footer" id="modalFooter2">
                 <a href="" class="btn btn-outline-dark" data-dismiss="modal" id="Popup_Callform_return2View">Cancel</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- ************* Send the Veeva Engage Call  link to the Coach ****************** -->
-<div id="RejectionCancellationModal" class="modal fade" role="dialog">
-    <!--Modal-->
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-        <!--Modal Content-->
-        <div class="modal-content" style="color: #3e557d;">
-            <!-- Modal Header-->
-            <div class="modal-header ">
-                <!-- <img src="img/boehringer-logo.png" alt=""> -->
-                <h3 id="Popup_Reasons_titleCoachee">Reason for refusal or cancellation</h3>
-            </div> <!-- Modal Body-->
-            <div class="modal-body ">
-                <h6 id="Popup_RTejection_Reasons_titleCoachee">Reason for refusal</h6>
-                <div class="form-group">
-                    <textarea class="form-control" disabled id="rejectionReasons" rows="3"></textarea>
-                </div>
-                <h6 id="Popup_Cancellation_Reasons_titleCoachee">Motivo della cancellazione </h6>
-                <div class="form-group">
-                    <textarea class="form-control" disabled id="cancellationReasons" rows="3"></textarea>
-                </div>
-            </div>
-            <!-- Modal Footer-->
-            <div class="modal-footer">
-                <a href="" class="btn btn-outline-dark" data-dismiss="modal" id="Popup_Planengage_back">Cancel</a>
             </div>
         </div>
     </div>

@@ -23,7 +23,7 @@ export class ContainerComponent implements OnInit {
 
   
     this.user=JSON.parse(sessionStorage.getItem('connectedUser'))
-    this.getImagebyid(this.user.id);
+    // this.getImagebyid(this.user.id);
    
     // this.base64Data =  this.user.picture;
     // this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
@@ -34,18 +34,18 @@ export class ContainerComponent implements OnInit {
   }
 
   usersres: Users;
-  userres: Users = new Users('', null, null, true,'','',null, new Date, '', new Date, '', '');
+  userres: Users ;
 
-  getImagebyid(id) {
-    this.userres.id=id;
-    this.accessServices.getbyid(this.userres).subscribe((res) => {
-          this.usersres=res;
-          this.retrieveResonse = res.picture;
-          this.base64Data = res.picture;
-          this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
-        }
-      );
-  }
+  // getImagebyid(id) {
+  //   this.userres.id=id;
+  //   this.accessServices.getbyid(this.userres).subscribe((res) => {
+  //         this.usersres=res;
+  //         this.retrieveResonse = res.picture;
+  //         this.base64Data = res.picture;
+  //         this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+  //       }
+  //     );
+  // }
   
   logout(){
     this.loginService.logout();

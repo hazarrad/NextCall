@@ -21,6 +21,7 @@ import { ProgramDescriptionComponent } from './modules/program-description/progr
 import { RouterModule } from '@angular/router';
 import { loginComponent } from './modules/login/login/login.component';
 import { AvatarModule } from 'ngx-avatar';
+import { IndexComponent } from './modules/index/index.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { AvatarModule } from 'ngx-avatar';
     LandingCoacheeComponent,
     FaqComponent,
     ProgramDescriptionComponent,
-    loginComponent
+    loginComponent,
+    IndexComponent
   ],
   imports: [
     BrowserModule,
@@ -54,3 +56,4 @@ import { AvatarModule } from 'ngx-avatar';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+// 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
