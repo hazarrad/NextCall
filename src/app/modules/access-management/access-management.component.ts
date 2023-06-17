@@ -395,7 +395,7 @@ export class AccessManagementComponent implements OnInit {
   //   uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
 
   //   //Make a call to the Spring Boot Application to save the image
-  //   this.httpClient.post('http://localhost:8080/upload', uploadImageData, { observe: 'response' })
+  //   this.httpClient.post('https://mcprettycall-service.onrender.com/upload', uploadImageData, { observe: 'response' })
   //     .subscribe((response) => {
   //       if (response.status === 200) {
   //         this.message = 'Image uploaded successfully';
@@ -408,7 +408,7 @@ export class AccessManagementComponent implements OnInit {
   //Gets called when the user clicks on retieve image button to get the image from back end
   // getImage() {
   //   //Make a call to Sprinf Boot to get the Image Bytes.
-  //   this.httpClient.get('http://localhost:8080/getByIDImage?id=2').subscribe(
+  //   this.httpClient.get('https://mcprettycall-service.onrender.com/getByIDImage?id=2').subscribe(
   //     res => {
   //       console.log(res)
   //       console.log('*************************')

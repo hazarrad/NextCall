@@ -12,35 +12,35 @@ export class AccessManagementService {
 
 
   public findAll(): Observable<Users[]> {
-    return this.httpClient.get<Users[]>("http://localhost:8080/findAllUsers");
+    return this.httpClient.get<Users[]>("https://mcprettycall-service.onrender.com/findAllUsers");
   }
 
   // public createUser(user: Users) {
-  //   return this.httpClient.post<Users>("http://localhost:8080/createUsers", user);
+  //   return this.httpClient.post<Users>("https://mcprettycall-service.onrender.com/createUsers", user);
   // }
 
   public createUser(formdata: FormData): Observable<any> {
-    return this.httpClient.post("http://localhost:8080/upload", formdata);
+    return this.httpClient.post("https://mcprettycall-service.onrender.com/upload", formdata);
   }
 
   public updateUser(user: Users) {
-    return this.httpClient.put<Users>("http://localhost:8080/updateUserFormData", user, { responseType: 'text' as 'json' });
+    return this.httpClient.put<Users>("https://mcprettycall-service.onrender.com/updateUserFormData", user, { responseType: 'text' as 'json' });
   }
 
 
   public deleteUser(user: Users) {
-    return this.httpClient.get<Users>("http://localhost:8080/deleteUserByID?id=" + user.id, { responseType: 'text' as 'json' });
+    return this.httpClient.get<Users>("https://mcprettycall-service.onrender.com/deleteUserByID?id=" + user.id, { responseType: 'text' as 'json' });
   }
 
   // public getbyid(user: Users) {
-  //   return this.httpClient.get<Users>("http://localhost:8080/getByIDImage?id=" + user.id);
+  //   return this.httpClient.get<Users>("https://mcprettycall-service.onrender.com/getByIDImage?id=" + user.id);
   // }
  
 
   // public createUser2(user: Users,selectedFile: File) {
   //   const uploadImageData = new FormData();
   //   uploadImageData.append('imageFile', selectedFile, selectedFile.name);
-  //   return this.httpClient.post<Users>('http://localhost:8080/upload',user+'&?'+uploadImageData, { observe: 'response' });
+  //   return this.httpClient.post<Users>('https://mcprettycall-service.onrender.com/upload',user+'&?'+uploadImageData, { observe: 'response' });
   // }
 
   // onUpload() {
