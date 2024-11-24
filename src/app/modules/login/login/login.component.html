@@ -1,119 +1,46 @@
-<div class=" register">
-  <div class="row pt-4">
-    <div class="col-md-3 register-left">
-      <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
-      <h3>Welcome</h3>
-      <p class="text-left">Pretty Call is portal created with the aim of facilitating the planning of coaching sessions. The platform
-        provides the functionalities needed for efficient planning of such sessions, as well as a procedural integration
-        with Veeva Engage and a process allowing coaches to provide their feedbacks!</p>
-    </div>
-    <div class="col-md-9 register-right">
-      <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
-        <li class="nav-item">
-          <a class="nav-link active" id="coachee-tab" data-toggle="tab" href="#coachee" role="tab" aria-controls="coachee"
-            aria-selected="true">Coachee</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="coach-tab" data-toggle="tab" href="#coach" role="tab" aria-controls="coach"
-            aria-selected="false">Coach</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="admin-tab" data-toggle="tab" href="#admin" role="tab" aria-controls="admin"
-            aria-selected="false">Admin</a>
-        </li>
-      </ul>
-      <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="coachee" role="tabpanel" aria-labelledby="coachee-tab">
-          <h3 class="register-heading">Apply as a Coahee</h3>
-          <div class="row register-form d-flex justify-content-center">
-            <div class="col-md-8">
-              <form method="POST" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
-                <div class="form-group ">
-                  <label for="exampleInputEmail1">Email address</label>
-                  <input type="email" placeholder="example@gmail.com" title="Please enter you mail" name="mail"
-                    id="mail" class="form-control" formControlName="email">
-                  <div class="alert alert-danger" *ngIf="f.email.touched && f.email.invalid">
-                    <div *ngIf="f.email.errors.required">please put email</div>
-                    <div *ngIf="f.password.errors.pattern">insert a complicated password</div>
+<div class="container">
+  <section style=" height: 100vh; display: flex; justify-content: center; align-items: center;">
+      <div class="card" style="width: 50%;border: none; padding-top: 0;">
+
+          <div class="card-body pt-0">
+              <h2 class="card-title pb-3" style="justify-self: center;"><strong>Welcome!</strong></h2>
+              <form method="POST" class="my-login-validation" [formGroup]="loginForm" (ngSubmit)="login()">
+                  <div class="form-group">
+                      <label for="email">E-Mail Address</label>
+                      <input type="email" placeholder="example@gmail.com" title="Please enter you mail" name="mail"
+                          id="mail" class="form-control" formControlName="email">
+                      <div class="invalid-feedback">
+                          Email is invalid
+                      </div>
                   </div>
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Password</label>
-                  <input type="password" title="Please enter your password" placeholder="********" name="password"
-                    id="password" class="form-control" formControlName="password">
-                  <div class="alert alert-danger" *ngIf="f.password.touched && f.password.invalid">
-                    <div *ngIf="f.password.errors.required">please put password</div>
-                    <div *ngIf="f.password.errors.pattern">insert a complicated password</div>
+
+                  <div class="form-group">
+                      <label for="password">Password
+                          <a href="forgot.html" class="float-right">
+                              Forgot Password?
+                          </a>
+                      </label>
+                      <input type="password" title="Please enter your password" placeholder="********" name="password"
+                          id="password" class="form-control" formControlName="password" required data-eye>
+                      <div class="invalid-feedback">
+                          Password is required
+                      </div>
                   </div>
-                </div>
-                <div class="form-group ">
-                  <input type="submit" [disabled]="!loginForm.valid" class="btnRegister" value="Register" />
-                </div>
+
+                  <div class="form-group">
+                      <div class="custom-checkbox custom-control">
+                          <input type="checkbox" name="remember" id="remember" class="custom-control-input">
+                          <label for="remember" class="custom-control-label">Remember Me</label>
+                      </div>
+                  </div>
+
+                  <div class="form-group m-0">
+                      <button type="submit" class="btn btn-primary btn-block">
+                          Login
+                      </button>
+                  </div>
               </form>
-            </div>
           </div>
-        </div>
-        <div class="tab-pane fade show" id="coach" role="tabpanel" aria-labelledby="coach-tab">
-          <h3 class="register-heading">Apply as a Coach</h3>
-          <div class="row register-form d-flex justify-content-center">
-            <div class="col-md-8">
-              <form method="POST" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
-                <div class="form-group ">
-                  <label for="exampleInputEmail1">Email address</label>
-                  <input type="email" placeholder="example@gmail.com" title="Please enter you mail" name="mail"
-                    id="mail" class="form-control" formControlName="email">
-                  <div class="alert alert-danger" *ngIf="f.email.touched && f.email.invalid">
-                    <div *ngIf="f.email.errors.required">please put email</div>
-                    <div *ngIf="f.password.errors.pattern">insert a complicated password</div>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Password</label>
-                  <input type="password" title="Please enter your password" placeholder="********" name="password"
-                    id="password" class="form-control" formControlName="password">
-                  <div class="alert alert-danger" *ngIf="f.password.touched && f.password.invalid">
-                    <div *ngIf="f.password.errors.required">please put password</div>
-                    <div *ngIf="f.password.errors.pattern">insert a complicated password</div>
-                  </div>
-                </div>
-                <div class="form-group ">
-                  <input type="submit" [disabled]="!loginForm.valid" class="btnRegister" value="Register" />
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-        <div class="tab-pane fade show" id="admin" role="tabpanel" aria-labelledby="admin-tab">
-          <h3 class="register-heading">Apply as a Admin</h3>
-          <div class="row register-form d-flex justify-content-center">
-            <div class="col-md-8">
-              <form method="POST" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
-                <div class="form-group ">
-                  <label for="exampleInputEmail1">Email address</label>
-                  <input type="email" placeholder="example@gmail.com" title="Please enter you mail" name="mail"
-                    id="mail" class="form-control" formControlName="email">
-                  <div class="alert alert-danger" *ngIf="f.email.touched && f.email.invalid">
-                    <div *ngIf="f.email.errors.required">please put email</div>
-                    <div *ngIf="f.password.errors.pattern">insert a complicated password</div>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Password</label>
-                  <input type="password" title="Please enter your password" placeholder="********" name="password"
-                    id="password" class="form-control" formControlName="password">
-                  <div class="alert alert-danger" *ngIf="f.password.touched && f.password.invalid">
-                    <div *ngIf="f.password.errors.required">please put password</div>
-                    <div *ngIf="f.password.errors.pattern">insert a complicated password</div>
-                  </div>
-                </div>
-                <div class="form-group ">
-                  <input type="submit" [disabled]="!loginForm.valid" class="btnRegister" value="Register" />
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
       </div>
-    </div>
-  </div>
+  </section>
 </div>

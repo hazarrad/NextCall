@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="ml-3 ">
     <div class="d-flex justify-content-between flex-warp  mb-3">
         <div class="p-2 col-md-4 ml-5">
@@ -36,3 +37,49 @@
     
     
 </div>
+=======
+<div class="row justify-content-center mt-4">
+    <div class="col-xl-5 col-lg-8">
+        <div class="text-center">
+            <h3>Frequently Asked Questions?</h3>
+            <p class="text-muted">If several languages coalesce, the grammar of the resulting language
+                is more simple and regular than that of the individual</p>
+
+        </div>
+    </div>
+    <!-- end col -->
+</div>
+<!-- end row -->
+<div class="row justify-content-center mt-5">
+    <div class="col-9">
+        <ul class="nav nav-tabs  nav-tabs-custom nav-justified justify-content-center faq-tab-box" id="pills-tab"
+            role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="pills-genarel-tab" data-bs-toggle="pill"
+                    data-bs-target="#pills-genarel" type="button" role="tab" aria-controls="pills-genarel"
+                    aria-selected="true">
+                    <span class="font-size-16">General Questions</span>
+                </button>
+            </li>
+
+        </ul>
+    </div>
+    <div class="col-lg-9">
+        <div class="tab-content pt-3" id="pills-tabContent">
+            <div class="tab-pane fade active show" id="pills-genarel" role="tabpanel"
+                aria-labelledby="pills-genarel-tab">
+                <div class="row g-4 mt-2" >
+                    <div class="col-lg-6" *ngFor="let item of faqList">
+                        <h5> {{item.title}}</h5>
+                        <p class="text-muted"> {{item.answer}} </p>
+                    </div>
+                   
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<!-- end row -->
+>>>>>>> 3c8f84f3b34d45aff0a372dbce92b832fc2f00e7
