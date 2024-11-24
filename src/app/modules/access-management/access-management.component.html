@@ -1,0 +1,226 @@
+<div class="d-flex justify-content-between mt-3 align-items-center mb-3">
+    <div class="col-md-4">
+        <h2>Users List</h2>
+
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div class="col-md-6">
+                        <h6 id="Mod_user_role"><i style="font-size: 20px;" class="fas fa-edit"></i> Change user role
+                        </h6>
+                    </div>
+                    <div class="col-md-6">
+                        <h6 id="Delete_user"><i style="font-size: 20px;" class="fas fa-trash"></i> Delete user</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="d-flex flex-row-reverse m-0 p-0  col-md-12 ">
+    <div class="d-flex flex-row-reverse  col-md-12 m-0 p-0 ">
+        <button class="btn btn-primary m-1" (click)="rerender()"><i class="fas fa-sync-alt"></i> Refresh</button>
+        <button class="btn btn-dark m-1" data-toggle="modal" data-target="#ModalCreateUsers" (click)="reset()"><i
+                class="fas fa-plus"></i>
+            Add User</button>
+    </div>
+</div>
+
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+    class="table table-condensed table-hover text-center text-secondary">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of users">
+            <td>{{ item.id }}</td>
+            <td>{{ item.email }}</td>
+            <td> <span *ngIf="item.role=='Admin'" class="badge badge-pill badge-primary">{{item.role}}</span>
+                <span *ngIf="item.role=='Coach'" class="badge badge-pill badge-danger">{{item.role}}</span>
+                <span *ngIf="item.role=='Coachee'" class="badge badge-pill badge-success">{{item.role}}</span>
+            </td>
+            <td>
+                <button class="btn btn-primary m-1 text-white " (click)="getElementByid(item)" data-toggle="modal"
+                    data-target="#ModalCreateUsers"><i class="fas fa-edit" style="color:white;"></i></button>
+                <button type="submit" class="btn btn-danger text-white m-1" (click)="delete(item)"><i
+                        class="fas fa-trash" style="color:#FFF;"></i></button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<!-- <button class="btn btn-primary" (click)="rerender()">refresh</button>
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table table-condensed table-hover text-center text-secondary">
+    <thead class="bg-light">
+        <tr>
+            <th>ID</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>IsActive</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of users">
+            <td>{{item.id}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.role}}</td>
+            <td>{{item.isActive}}</td>
+            <td>
+                <button class="btn btn-primary m-1 text-white " data-toggle="modal"
+                    data-target="#ModalCreateUsers"><i class="fas fa-edit" style="color:white;"></i></button>
+                <button type="submit" class="btn btn-danger text-white m-1" (click)="RemoveUser()"><i
+                        class="fas fa-trash" style="color:#FFF;"></i></button>
+            </td>
+        </tr>
+    </tbody>
+
+</table> -->
+
+<!-- ******************************************modal Creation users**************************** -->
+<!--Division for Modal-->
+<div id="ModalCreateUsers" class="modal fade" role="dialog">
+    <!--Modal-->
+    <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered ">
+        <!--Modal Content-->
+        <div class="modal-content" style="color: #3e557d;">
+            <!-- Modal Header-->
+            <div class="modal-header ">
+                <!-- <img src="img/boehringer-logo.png" alt=""> -->
+                <h3 id="MainTitleAdd">Create user</h3>
+            </div> <!-- Modal Body-->
+            <div class="modal-body ">
+                <form [formGroup]="form" (ngSubmit)="submit(form.value)">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Email</label>
+                            <input type="email" class="form-control" id="email" formControlName="email"
+                                placeholder="Email">
+                            <div class="alert alert-danger" *ngIf="f.email.touched && f.email.invalid">
+                                <div *ngIf="f.email.errors.required">email is required</div>
+                                <div *ngIf="f.email.errors.email">put the correct email</div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputPassword4">Password</label>
+                            <input type="text" class="form-control" id="password" formControlName="password"
+                                placeholder="Password">
+                            <div class="alert alert-danger" *ngIf="f.password.touched && f.password.invalid">
+                                <div *ngIf="f.password.errors.required">password is required</div>
+                                <!-- <div *ngIf="f.password.errors.pattern">insert a complicated password</div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Name</label>
+                            <input type="text" id="name" formControlName="name" class="form-control" placeholder="Name">
+                            <div class="alert alert-danger" *ngIf="f.name.touched && f.name.invalid">
+                                <div *ngIf="f.name.errors.required">name is required</div>
+                                <!-- <div *ngIf="f.password.errors.pattern">insert a complicated password</div> -->
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputPassword4">Role</label>
+                            <select id="role" formControlName="role" class="form-control">
+                                <option disabled selected>Choose...</option>
+                                <option *ngFor="let symbol of keysRole(roleOption)" [ngValue]="roleOption[symbol]">
+                                    {{symbol}}
+                                </option>
+                            </select>
+                            <div class="alert alert-danger" *ngIf="f.role.touched && f.role.invalid">
+                                <div *ngIf="f.role.errors.required">Select a role</div>
+                                <!-- <div *ngIf="f.password.errors.pattern">insert a complicated password</div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-2 ">
+                            <label for="exampleFormControlSelect1" id="Adduserform_role_field2">IsActive</label>
+                            <div class="custom-control custom-switch mt-2">
+                                <input type="checkbox" class="custom-control-input" id="isActive"
+                                    formControlName="isActive">
+                                <label class="custom-control-label" for="isActive"
+                                    id="Adduserform_role_field21"></label>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-5">
+                            <label for="inputPassword4">Profile</label>
+                            <select id="profile" formControlName="profile" class="form-control">
+                                <option disabled selected>Choose...</option>
+                                <option *ngFor="let symbol of keys(profile)" [ngValue]="profile[symbol]">{{symbol}}
+                                </option>
+                            </select>
+                            <div class="alert alert-danger" *ngIf="f.profile.touched && f.profile.invalid">
+                                <div *ngIf="f.profile.errors.required">Select a profile</div>
+                                <!-- <div *ngIf="f.password.errors.pattern">insert a complicated password</div> -->
+                            </div>
+                        </div>
+                        <!-- <div class="form-group col-md-5">
+                            <label for="inputCity">Manager</label>
+                            <select id="managerEmail" formControlName="managerEmail" class="form-control">
+                                <option selected disabled>Choose...</option>
+                                <option *ngFor="let symbol of arrManagers" [ngValue]="symbol.email">{{symbol.email}}
+                                </option>
+                            </select>
+                        </div> -->
+
+                        <!-- <div class="form-group col-md-12">
+                            <div class="container row">
+                                <div class="col-md-6">
+                                    <input type="file" accept="image/*" (change)="onSelectFile($event)">
+                                    <img [src]="imgUrl" height="200" *ngIf="imgUrl">
+                                </div>
+                            </div>
+
+                        </div> -->
+
+                        <!-- <div class="form-group col-md-12">
+                            <label>Profile Image</label>
+                            <div class="input-group mb-3" *ngIf="showUploadImg">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                </div>
+                                <div class="custom-file">
+                                    <input type="file" accept="image/*" (change)="onSelectFile($event)"
+                                        class="custom-file-input" id="inputGroupFile01"
+                                        aria-describedby="inputGroupFileAddon01">
+                                    <label class="custom-file-label" for="inputGroupFile01">Choose Image</label>
+                                </div>
+                            </div>
+                                <img [src]="imgUrl" height="200" *ngIf="imgUrl">
+                            
+                        </div> -->
+                    </div>
+
+                    <!-- Modal Footer-->
+                    <div class="modal-footer">
+                        <!-- </a> <a href="" class="btn btn-outline-dark" data-dismiss="modal"
+                                        id="Adduserform_button_cancel"></a> -->
+                        <!-- id="Aggiungi" -->
+                        <button type="submit" *ngIf="showBtnAddUser" class="btn btn-dark text-white add-row"
+                            id="Adduserform_button_add" [disabled]="!form.valid">Add</button>
+                        <button type="button" *ngIf="showBtnUpdateUser" class="btn btn-dark text-white add-row"
+                            id="Adduserform_button_add" [disabled]="!form.valid"
+                            (click)="edit(form.value)">Update</button>
+                        <a href="" class="btn btn-outline-dark" data-dismiss="modal"
+                            id="Adduserform_button_cancel" #closebutton>Cancel</a>
+                    </div>
+
+                </form>
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

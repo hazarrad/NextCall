@@ -1,0 +1,660 @@
+<div class="d-flex align-items-center flex-wrap mt-3 col-md-12  p-0  ">
+    <div class="col-md-3 m-0 p-0  ">
+        <div class="d-flex mt-4 flex-wrap">
+            <div class="col-md-12">
+                <h5 style="height: 30px;" class="mb-4" id="KPI_completed_sessions">N° of Sessions managed in total
+                </h5>
+                <h2><strong id="TotalSessionsAdmin">5</strong></h2>
+                <hr>
+            </div>
+            <div class="col-md-12">
+                <h5 style="height: 30px;" class="mb-4" id="KPI_planned_sessions">N° of Sessions managed in the last
+                    month
+                </h5>
+                <h2><strong id="totalSessionsPlannedAdmin">3</strong></h2>
+                <hr>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6   m-0 p-0">
+        <!-- *************** chart js line statistic******* -->
+        <div class="col-md-12">
+            <canvas id="myChart2" height="130"></canvas>
+        </div>
+    </div>
+    <div class="col-md-3 m-0 p-0">
+        <div class="card " style="height: 200px;">
+            <div class="card-body  text-center">
+                <div style="font-size: 5vh;">
+                    <div id="trophy">
+                        <img class="img-responsive" src="assets/badges/badge1.png" style="width: 50px; height: 50px;"
+                            alt="badge">
+                        <img class="img-responsive" src="assets/badges/badge2.png" style="width: 50px; height: 50px;"
+                            alt="badge">
+                        <img class="img-responsive" src="assets/badges/badge3.png" style="width: 50px; height: 50px;"
+                            alt="badge">
+                        <img class="img-responsive" src="assets/badges/badge4.png" style="width: 50px; height: 50px;"
+                            alt="badge">
+
+                    </div>
+                    <h5 class="card-text " id="Gamification_content2"> Congratulations, you have obtained
+                        <strong>7</strong> badges!
+                    </h5>
+                    <hr>
+                    <h6 class="card-text " id="Gamification_badgetext"> reach 5 sessions</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="d-flex align-items-center flex-wrap mt-3 col-md-12  p-0  ">
+    <div class="col-md-4 m-0 p-0  ">
+        <div class="d-flex mt-4 flex-wrap">
+            <div class="col-md-12">
+                <h5 style="height: 30px;" class="mb-4" id="KPI_completed_sessions">N° of Sessions rejected
+                </h5>
+                <h2><strong id="TotalSessionsAdmin">2</strong></h2>
+                <hr>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 m-0 p-0  ">
+        <div class="d-flex mt-4 flex-wrap">
+            <div class="col-md-12">
+                <h5 style="height: 30px;" class="mb-4" id="KPI_completed_sessions">N° of ratings provided
+                </h5>
+                <h2><strong id="TotalSessionsAdmin">3</strong></h2>
+                <hr>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 m-0 p-0  ">
+        <div class="d-flex mt-4 flex-wrap">
+            <div class="col-md-12">
+                <h5 style="height: 30px;" class="mb-4" id="KPI_completed_sessions">N° of Sessions which need to evaluate
+                </h5>
+                <h2><strong id="TotalSessionsAdmin">1</strong></h2>
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<h2 class="ml-3 ">New coaching requests</h2>
+<div class="d-flex align-items-top flex-wrap mt-3 col-md-12  p-0  ">
+    <div class="col-md-9 mb-3 ">
+        <div class="mb-3">
+            <table datatable [dtOptions]="dtOptions"
+                class="table  table-condensed table-hover text-center text-secondary">
+                <thead class="bg-light">
+                    <tr>
+                        <th>ID Session</th>
+                        <th>Coachee</th>
+                        <th>Planned Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>5</td>
+                        <td>hassan</td>
+                        <td>planned Date</td>
+                        <td>new</td>
+                        <td>
+                            <a class="m-1" role="button" (click)="AccettaProposta()"><i
+                                    style="color: rgb(18, 186, 45); font-size: 20px;"
+                                    class="fas fa-check-circle"></i></a>
+                            <a class="m-1" role="button" (click)="RifiutaProposta()"><i
+                                    style=" color:#FF005C; font-size: 20px;" class="fas fa-times-circle"></i></a>
+                            <a href="" class="m-1" data-toggle="modal" data-target="#ModalDetailsSession"><i
+                                    class="fas fa-ellipsis-h"></i></a>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="mb-3">
+            <h2>Sessions to Plan in Engage</h2>
+            <table datatable [dtOptions]="dtOptions"
+                class="table  table-condensed table-hover text-center text-secondary">
+                <thead class="bg-light">
+                    <tr>
+                        <th>ID Session</th>
+                        <th>Coachee</th>
+                        <th>Planned Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>5</td>
+                        <td>hassan</td>
+                        <td>planned Date</td>
+                        <td>new</td>
+                        <td>
+
+                            <a role="button" (click)="CancellCallPlanifica()"><i
+                                    style=" color:rgb(239, 32, 30); font-size: 20px;" class="fas fa-trash"></i></a>
+                            <a href="" class="m-1" data-toggle="modal" data-target="#ModalDetailsSession"><i
+                                    class="fas fa-ellipsis-h"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h6 id="Actions_accept"><i style="color: rgb(18, 186, 45); font-size: 20px;"
+                        class="fas fa-check-circle"></i> Accept proposal
+                </h6>
+                <br>
+                <h6 id="Actions_decline"><i style="color:#FF005C; font-size: 20px;" class="fas fa-times-circle"></i>
+                    Reject proposal
+                </h6>
+                <br>
+                <h6 id="Actions_access_feedback"><i style="color:#4A69FF; font-size: 20px;" class="fas fa-eye"></i>
+                    Review feedback or cancellation reason
+                </h6>
+                <br>
+                <h6 id="Actions_cancel"><i style="color:rgb(239, 32, 30); font-size: 20px;" class="fas fa-trash"></i>
+                    Cancel the call</h6>
+                <br>
+                <h6 id="Actions_provide_feedback"><i style=" color:#00848C; font-size: 20px;"
+                        class="far fa-clipboard"></i> Provide feedback</h6>
+                <br>
+                <h6 id="Action_View_Feedback"><i style="color:rgb(43, 186, 101); font-size: 20px;"
+                        class="far fa-comment-dots"></i> View feedback</h6>
+                <br>
+                <h6 id="Actions_access_comment"><i style="color:#FF7272; font-size: 20px;"
+                        class="far fa-comment-alt"></i> See the comment of the coachee</h6>
+                <br>
+                <h6 id="Actions_call_form"> <i style="font-size: 20px;" class="fas fa-ellipsis-h"></i>
+                    Session details</h6>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="d-flex flex-wrap">
+    <div class="col-md-12 mb-3">
+        <h2>Planned Sessions</h2>
+        <table datatable [dtOptions]="dtOptions" class="table  table-condensed table-hover text-center text-secondary">
+            <thead class="bg-light">
+                <tr>
+                    <th>ID Session</th>
+                    <th>Coachee</th>
+                    <th>Planned Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>5</td>
+                    <td>hassan</td>
+                    <td>planned Date</td>
+                    <td>new</td>
+                    <td>
+
+                        <a role="button" (click)="CancellCallPlanifica()"><i
+                                style=" color:rgb(239, 32, 30); font-size: 20px;" class="fas fa-trash"></i></a>
+                        <a href="" class="m-1" data-toggle="modal" data-target="#ModalDetailsSession"><i
+                                class="fas fa-ellipsis-h"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-12 mb-3">
+        <h2>Call's waiting for evaluate</h2>
+        <table datatable [dtOptions]="dtOptions" class="table  table-condensed table-hover text-center text-secondary">
+            <thead class="bg-light">
+                <tr>
+                    <th>ID Session</th>
+                    <th>Coachee</th>
+                    <th>Planned Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>5</td>
+                    <td>hassan</td>
+                    <td>planned Date</td>
+                    <td>new</td>
+                    <td>
+
+                        <a role="button" (click)="CancellCallPlanifica()"><i
+                                style=" color:rgb(239, 32, 30); font-size: 20px;" class="fas fa-trash"></i></a>
+                        <a role="button" data-toggle="modal" data-target="#ModalEvaluationSessio" (click)="evaluate()" d
+                            class="m-1"><i style="color:#00848C; font-size: 20px;" class="far fa-clipboard "></i></a>
+                        <a href="" class="m-1" data-toggle="modal" data-target="#ModalDetailsSession"><i
+                                class="fas fa-ellipsis-h"></i></a>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-12 mb-5">
+        <h2>Comlpeted Sessions</h2>
+        <table datatable [dtOptions]="dtOptions" class="table  table-condensed table-hover text-center text-secondary">
+            <thead class="bg-light">
+                <tr>
+                    <th>ID Session</th>
+                    <th>Coachee</th>
+                    <th>Planned Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>5</td>
+                    <td>hassan</td>
+                    <td>planned Date</td>
+                    <td>new</td>
+                    <td>
+                        <a href="" class="m-1" data-toggle="modal" data-target="#ModalViewEvaluationSession"><i
+                                style="color:rgb(43, 186, 101); font-size: 20px;" class="far fa-comment-dots"></i></a>
+                        <a role="button" class="m-1" id="commentBtn" (click)="showCoacheeComment()"><i
+                                style=" color:#FF7272; font-size: 20px;" class="far fa-comment-alt"></i></a>
+                        <a href="" class="m-1" data-toggle="modal" data-target="#ModalDetailsSession"><i
+                                class="fas fa-ellipsis-h"></i></a>
+                        <a role="button" class="m-1" (click)="showReasons()"><i
+                                style="color:rgb(69, 66, 69) ; font-size: 20px;" class="fas fa-eye"></i></a>
+
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+<!-- ******************************************modal Deatails form **************************** -->
+<!--Division for Modal-->
+<div id="ModalDetailsSession" class="modal fade" role="dialog">
+    <!--Modal-->
+    <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered ">
+        <!--Modal Content-->
+        <div class="modal-content" style="color: #3e557d;">
+            <!-- Modal Header-->
+            <div class="modal-header ">
+                <!-- <img src="img/boehringer-logo.png" alt=""> -->
+                <h3 id="Popup_Callform_main_title_Coach">View session</h3>
+            </div> <!-- Modal Body-->
+            <div class="modal-body ">
+                <div class="text-center d-flex justify-content-between">
+                    <h5 id="Popup_Callform_main_subtitle_Coach">Coaching session card</h5>
+                    <h5 class="mr-4"><strong id="Popup_Callform_id">ID sessione
+                        </strong> <a id="ViewEvaSessionUniqueID">314</a> </h5>
+                </div>
+                <hr>
+                <div class="row col-md-12 justify-content-between">
+                    <div class="form-group row col-md-5">
+                        <label class="col-sm-5 col-form-label" id="Popup_Callform_coach_Coach">Coach</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" disabled id="ViewEvaSessionCoach">
+                        </div>
+                    </div>
+                    <div class="form-group row col-md-7">
+                        <label class="col-sm-4 col-form-label" id="Popup_Callform_coachee_Coach">Coachee</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" disabled id="ViewEvaSessionCoachee">
+                        </div>
+                    </div>
+                </div>
+                <div class="row col-md-12 justify-content-between">
+                    <div class="form-group row col-md-5">
+                        <label class="col-sm-5 col-form-label" id="Popup_Callform_date_Coach">Start date</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" disabled id="ViewEvaSessionScheduledStart">
+                        </div>
+                    </div>
+                    <div class="form-group row col-md-7">
+                        <label class="col-sm-4 col-form-label" id="Popup_Callform_date_EndCoach2">End date</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" disabled id="VievEvaSessionScheduledEnd">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row col-md-12 justify-content-between">
+                    <div class="form-group row col-md-5">
+                        <label class="col-sm-5 col-form-label" id="Popup_Callform_status_Coach">Status</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" disabled id="ViewEvaSessionStatus">
+                        </div>
+                    </div>
+                    <div class="form-group row col-md-7">
+                        <label class="col-sm-4 col-form-label" id="Popup_Callform_date_linkCoach">Link session </label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" disabled id="VievEvaSessionURL">
+                        </div>
+                    </div>
+                </div>
+
+                <strong id="Popup_Callform_title_scenario_Coach"> Coaching scenario</strong>
+                <div class="form-group">
+                    <hr>
+                    <h5 id="Popup_Callform_title_context_Coach">Context</h5>
+                    <div class="form-group row">
+                        <label class="col-sm-5 col-form-label" id="Popup_Callform_therapeuticarea_Coach">Therapeutic
+                            area</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" disabled id="ViewEvaSessionScenarioAreaTerapeutica">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-5 col-form-label" id="Popup_Callform_keymessage_Coach">Key message (s) of
+                            product / s (any priority)</label>
+                        <div class="col-sm-7">
+                            <textarea class="form-control" disabled id="ViewEvaSessionScenarioKeyMessage"
+                                rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-5 col-form-label" id="Popup_Callform_competitor_Coach">Main competitor
+                            (name and Market Share)</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" disabled id="ViewEvaSessionScenarioCompetitors">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-5 col-form-label" id="Popup_Callform_context_Coach">Context of
+                            reference</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" disabled id="ViewEvaSessionScenarioContext1">
+                            <input type="text" class="form-control" disabled id="ViewEvaSessionScenarioContext2">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-5 col-form-label" id="Popup_Callform_territory_Coach">Reference area
+                            (users)</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" disabled id="ViewEvaSessionScenarioTerritorio">
+                        </div>
+                    </div>
+                    <hr>
+                    <h5 id="Popup_Callform_title_profile_Coach">Profile to be interpreted for the coach</h5>
+                    <div class="form-group row">
+                        <label class="col-sm-5 col-form-label" id="Popup_Callform_firstvisit_Coach">First visit</label>
+                        <div class="col-sm-7">
+                            <div class="custom-control custom-switch mt-2">
+                                <input type="checkbox" value="false" disabled class="custom-control-input"
+                                    id="ViewCustomSwitches1">
+                                <label class="custom-control-label" for="ViewCustomSwitches1"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-5 col-form-label" id="Popup_Callform_KOL_Coach">Key Opinion Leader</label>
+                        <div class="col-sm-7">
+                            <div class="custom-control custom-switch mt-2">
+                                <input type="checkbox" value="false" disabled class="custom-control-input"
+                                    id="ViewCustomSwitches2">
+                                <label class="custom-control-label" for="ViewCustomSwitches2"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-5 col-form-label" id="Popup_Callform_digital_profile_Coach">Digital profile
+                            of the doctor to be interpreted</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" disabled id="ViewEvaSessionScenarioCompetitorShare">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-5 col-form-label" id="Popup_Callform_cmvprofile_Coach">CMV profile</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" disabled id="ViewEvaSessionScenarioCMVProfile">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-5 col-form-label" id="Popup_Callform_ladder_Coach">Adoption ladder
+                            positions</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" disabled id="ViewEvaSessionScenarioAdoptionladder">
+                        </div>
+                    </div>
+                    <hr>
+                    <h5 id="Popup_Callform_title_simulation_Coach">Simulation</h5>
+                    <div class="form-group row">
+                        <label class="col-sm-5 col-form-label" id="Popup_Callform_goals_Coach">Objective (s) of the
+                            session (ref. SMART)</label>
+                        <div class="col-sm-7">
+                            <textarea class="form-control" disabled id="ViewEvaSessionScenarioObiettivi"
+                                rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-5 col-form-label" id="Popup_Callform_agenda_Coach">Session agenda</label>
+                        <div class="col-sm-7">
+                            <textarea class="form-control" disabled id="ViewEvaSessionScenarioAgenda"
+                                rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal Footer-->
+            <div class="modal-footer">
+                <a href="" class="btn btn-outline-dark" data-dismiss="modal" id="Popup_Valutazioni_return">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ********* View Evaluation modal for completed nex call ******************************** -->
+<div id="ModalViewEvaluationSession" class="modal fade" role="dialog">
+    <!--Modal-->
+    <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered ">
+        <!--Modal Content-->
+        <div class="modal-content" style="color: #3e557d;">
+            <!-- Modal Header-->
+            <div class="modal-header ">
+                <!-- <img src="img/boehringer-logo.png" alt=""> -->
+                <h3 id="Popup_Feedback_main_title2_Coach">Feedback card</h3>
+            </div> <!-- Modal Body-->
+            <div class="modal-body ">
+                <div class="text-center">
+                    <h2 id="Popup_Feedback_title2_Coach">Session feedback form</h2>
+                    <hr>
+                </div>
+
+                <!-- *************** Coaching session details********************* -->
+                <div class="row">
+                    <div class="col-md-7">
+                        <h5 id="Popup_Feedback_detail2_Coach">Coaching session details</h5>
+                        <div class="form-group row">
+                            <label class="col-sm-5 col-form-label" id="Popup_Feedback_sessionid2_Coach">nex Call
+                                coaching report ID</label>
+                            <div class="col-sm-7">
+                                <input disabled type="text" class="form-control" id="EvaSessionEvaluationUniqueID">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-5 col-form-label" id="Popup_Feedback_coachee2_Coach">Coachee</label>
+                            <div class="col-sm-7">
+                                <input disabled type="text" class="form-control" id="EvaSessionEvaluationCoachee">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-5 col-form-label" id="Popup_Feedback_coach2_Coach">Coach</label>
+                            <div class="col-sm-7">
+                                <input disabled type="text" class="form-control" id="EvaSessionEvaluationCoach">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <h5 id="Popup_Feedback_coach_Coach_DateTitle">Last modification date of the coach</h5>
+                        <div class="form-group row">
+                            <label class="col-sm-5 col-form-label" id="Popup_Feedback_date2_Coach">Schedule date</label>
+                            <div class="col-sm-7">
+                                <input disabled type="text" class="form-control" id="EvaSessionEvaluationDate">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-5 col-form-label" id="Popup_Feedback_length2_Coach">Session
+                                duration</label>
+                            <div class="col-sm-7">
+                                <input disabled type="text" class="form-control" id="EvaSessionEvaluationDurata">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-5 col-form-label" id="Popup_Feedback_status2_Coach">Session
+                                state</label>
+                            <div class="col-sm-7">
+                                <input disabled type="text" class="form-control" id="EvaSessionEvaluationStatus">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+
+
+                <!-- **********************Customer Engagement Rating****************************** -->
+                <div class="row">
+                    <div class="col-md-8">
+                        <h5 id="Popup_Feedback_evaluation_title2_Coach">Feedback on customer engagement</h5>
+                        <div class="form-group row mt-5">
+                            <label class="col-sm-5 col-form-label" id="Popup_Feedback_Evaluation7_Coach">Engagement
+                                preparation<strong></strong></label>
+                            <div class="col-sm-7">
+                                <select disabled class="form-control" id="Eva_Popup_Feedback_LOV1_Coach">
+                                    <option id="Popup_Feedback_LOV1_Coach">Adequate</option>
+                                    <option id="Popup_Feedback_LOV2_Coach">Development area</option>
+                                </select>
+                                <small id="Popup_Feedback_footer_adequato21_Coach"
+                                    class="form-text text-muted">Adequate: The coachee analyzed the doctor's profile in
+                                    advance and defined the agenda, the objective and the communication
+                                    approach.</small>
+                                <!-- <small id="Popup_Feedback_footer_NonAdequato21_Coach"
+                                    class="form-text text-muted"></small> -->
+
+                            </div>
+
+
+                        </div>
+                        <div class="form-group row ">
+                            <label class="col-sm-5 col-form-label" id="Popup_Feedback_Evaluation8_Coach">Involve the
+                                interlocutor<strong></strong></label>
+                            <div class="col-sm-7">
+                                <select disabled class="form-control" id="Eva_Popup_Feedback_LOV2_Coach">
+                                    <option id="Popup_Feedback_LOV12_Coach">Adequate</option>
+                                    <option id="Popup_Feedback_LOV22_Coach">Development area</option>
+                                </select>
+                                <small id="Popup_Feedback_footer_adequato22_Coach"
+                                    class="form-text text-muted">Adequate: The coachee developed a fruitful relationship
+                                    with the doctor and hired him, earning her interest.</small>
+                                <!-- <small id="Popup_Feedback_footer_NonAdequato22_Coach"
+                                    class="form-text text-muted"></small> -->
+
+                            </div>
+                        </div>
+                        <div class="form-group row ">
+                            <label class="col-sm-5 col-form-label" id="Popup_Feedback_Evaluation9_Coach">Identify
+                                needs<strong></strong></label>
+                            <div class="col-sm-7">
+                                <select disabled class="form-control" id="Eva_Popup_Feedback_LOV3_Coach">
+                                    <option id="Popup_Feedback_LOV13_Coach">Adequate</option>
+                                    <option id="Popup_Feedback_LOV23_Coach">Development area</option>
+                                </select>
+                                <small id="Popup_Feedback_footer_adequato23_Coach" class="form-text text-muted">
+                                    Adequate: The coachee proactively listened to the doctor and identified her needs,
+                                    providing complete and timely responses.
+                                </small>
+                                <!-- <small id="Popup_Feedback_footer_NonAdequato23_Coach"
+                                    class="form-text text-muted"></small> -->
+
+                            </div>
+                        </div>
+                        <div class="form-group row ">
+                            <label class="col-sm-5 col-form-label" id="Popup_Feedback_Evaluation10_Coach">
+                                Provide solutions<strong></strong></label>
+                            <div class="col-sm-7">
+                                <select disabled class="form-control" id="Eva_Popup_Feedback_LOV4_Coach">
+                                    <option id="Popup_Feedback_LOV14_Coach">Adequate</option>
+                                    <option id="Popup_Feedback_LOV24_Coach">Development area</option>
+                                </select>
+                                <small id="Popup_Feedback_footer_adequato24_Coach" class="form-text text-muted">
+                                    Adequate: The coachee provided clear and convincing solutions, highlighting the
+                                    benefits of the therapeutic proposal.
+                                </small>
+                                <!-- <small id="Popup_Feedback_footer_NonAdequato24_Coach"
+                                    class="form-text text-muted"></small> -->
+
+                            </div>
+                        </div>
+                        <div class="form-group row ">
+                            <label class="col-sm-5 col-form-label" id="Popup_Feedback_Evaluation11_Coach">Verify and
+                                manage the perceived<strong></strong></label>
+                            <div class="col-sm-7">
+                                <select disabled class="form-control" id="Eva_Popup_Feedback_LOV5_Coach">
+                                    <option id="Popup_Feedback_LOV15_Coach">Adequate</option>
+                                    <option id="Popup_Feedback_LOV25_Coach">Development area</option>
+                                </select>
+                                <small id="Popup_Feedback_footer_adequato25_Coach" class="form-text text-muted">
+                                    Adequate: The coachee was assertive in conducting the interview and constructively
+                                    handled the physician's views and objections.
+                                </small>
+                                <!-- <small id="Popup_Feedback_footer_NonAdequato25_Coach"
+                                    class="form-text text-muted"></small> -->
+
+                            </div>
+                        </div>
+                        <div class="form-group row ">
+                            <label class="col-sm-5 col-form-label" id="Popup_Feedback_Evaluation12_Coach">
+                                Get the deal<strong></strong></label>
+                            <div class="col-sm-7">
+                                <select disabled class="form-control" id="Eva_Popup_Feedback_LOV6_Coach">
+                                    <option id="Popup_Feedback_LOV16_Coach">Adequate</option>
+                                    <option id="Popup_Feedback_LOV26_Coach">Development area</option>
+                                </select>
+                                <small id="Popup_Feedback_footer_adequato26_Coach" class="form-text text-muted">
+                                    Adequate: The coachee has obtained a clear commitment from the physician on the
+                                    agreed follow-up actions at the end of the visit.
+                                </small>
+                                <!-- <small id="Popup_Feedback_footer_NonAdequato26_Coach"
+                                    class="form-text text-muted"></small> -->
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h5 id="Popup_Feedback_evaluation_post2_Coach">Post call feedback: behavior implemented *</h5>
+                        <p class="mt-3" id="Popup_Feedback_evaluation_post_subtitle2_Coach">Enter specific comments here
+                            regarding the behavior related to individual activities</p>
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <textarea disabled class="form-control" id="EvaPostCoachingComments"
+                                    rows="22"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p id="Popup_Feedback_compulsory2">* mandatory field for completion</p>
+
+            </div>
+            <!-- Modal Footer-->
+            <div class="modal-footer">
+
+                <a href="" class="btn btn-outline-dark" data-dismiss="modal" id="Popup_Callform_return_Coach">Cancel</a>
+            </div>
+
+        </div>
+    </div>
+</div>

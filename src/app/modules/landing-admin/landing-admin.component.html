@@ -1,0 +1,157 @@
+<div class="d-flex col-md-12 m-0 p-0 flex-wrap">
+    <div class="col-md-12 m-0 p-0  ">
+        <div class="d-flex mt-4 flex-wrap">
+            <div class="col-md-3">
+                <h5 style="height: 30px;" class="mb-4" id="KPI_completed_sessions">Total Sessions</h5>
+                <h2><strong id="TotalSessionsAdmin">5</strong></h2>
+                <hr>
+            </div>
+            <div class="col-md-3">
+                <h5 style="height: 30px;" class="mb-4" id="KPI_planned_sessions">Planned Sessions</h5>
+                <h2><strong id="totalSessionsPlannedAdmin">3</strong></h2>
+                <hr>
+            </div>
+            <div class="col-md-3">
+                <h5 style="height: 30px;" class="mb-4" id="KPI_rejected_sessions">Rejecetd Call's</h5>
+                <h2><strong id="totalSessionsRejectedAdmin">2</strong></h2>
+                <hr>
+            </div>
+
+            <div class="col-md-3">
+                <h5 style="height: 30px;" class="mb-4" id="KPI_feedbacks_provided">Total feedbacks</h5>
+                <h2><strong id="totalFeedabcksAdmin">2</strong></h2>
+                <hr>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex jsutify-content-bteween col-md-12  m-0 p-0">
+        <div class="col-md-3 m-0 p-0  ">
+            <div class="d-flex mt-4 flex-wrap">
+                <div class="col-md-12">
+                    <h5 style="height: 30px;" class="mb-4" id="KPI_completed_sessions">N° of Sessions performed in the month
+                    </h5>
+                    <h2><strong id="TotalSessionsAdmin">5</strong></h2>
+                    <hr>
+                </div>
+                <div class="col-md-12">
+                    <h5 style="height: 30px;" class="mb-4" id="KPI_planned_sessions">N° of Sessions carried out in the last
+                        3 months</h5>
+                    <h2><strong id="totalSessionsPlannedAdmin">3</strong></h2>
+                    <hr>
+    
+                </div>
+                <div class="col-md-12">
+                    <h5 style="height: 30px;" class="mb-4" id="KPI_planned_sessions">N° of Sessions carried out in the last
+                        3 months</h5>
+                    <h2><strong id="totalSessionsPlannedAdmin">3</strong></h2>    
+                </div>
+            </div>
+        </div>
+        <!-- *************** chart js line statistic******* -->
+        <div class="col-md-9">
+            <canvas id="myChart" height="130"></canvas>
+        </div>
+    </div>
+
+    <div class="col-md-12 ">
+        <div class="d-flex flex-wrap align-items-center pt-3">
+            <!-- *************** chart js line statistic******* -->
+            <div class="col-md-6 ">
+                <table class="table table-striped text-center ">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col" id="Evaluation_ok">Adequate</th>
+                            <th scope="col" id="Evaluation_ko">Non Adequate</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row" id="Evaluation1">Evaluation 1</th>
+                            <td id="Evaluation1Adeguato">3</td>
+                            <td id="Evaluation1NonAdeguato">1</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" id="Evaluation2">Evaluation 2</th>
+                            <td id="Evaluation2Adeguato">5</td>
+                            <td id="Evaluation2NonAdeguato">1</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" id="Evaluation3">Evaluation 3</th>
+                            <td id="Evaluation3Adeguato">1</td>
+                            <td id="Evaluation3NonAdeguato">2</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" id="Evaluation4">Evaluation 4</th>
+                            <td id="Evaluation4Adeguato">2</td>
+                            <td id="Evaluation4NonAdeguato">3</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" id="Evaluation5">Evaluation 5</th>
+                            <td id="Evaluation5Adeguato">6</td>
+                            <td id="Evaluation5NonAdeguato">6</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" id="Evaluation6">Evaluation 5</th>
+                            <td id="Evaluation6Adeguato">4</td>
+                            <td id="Evaluation6NonAdeguato">1</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- ***************** Values session ************* -->
+            <div class="col-md-6 ">
+                <canvas id="barChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="col-md-12  ">
+        <h1>Details Sessions</h1>
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+            class="table table-condensed table-hover text-center text-secondary">
+            <thead class="bg-light">
+                <tr>
+                    <th>ID</th>
+                    <th>Coach</th>
+                    <th>Coachee</th>
+                    <th>ScheduledStart</th>
+                    <th>ScheduledEnd</th>
+                    <th>Status</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of sessionsList">
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.CoachEmail }}</td>
+                    <td>{{ item.CoachEmail }}</td>
+                    <td>{{ item.scheduledStart | date: 'dd/MM/yyyy'}}</td>
+                    <td>{{ item.scheduledEnd | date: 'dd/MM/yyyy'}}</td>
+                    <td>{{ item.status }}</td>
+               
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-12 mb-5 mt-3 ">
+        <h1>Details Feedbacks</h1>
+        <table datatable [dtOptions]="dtOptions" class="table table-condensed table-hover text-center text-secondary">
+            <thead class="bg-light">
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Body</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- <tr *ngFor="let post of posts">
+                    <td>{{ post.id }}</td>
+                    <td>{{ post.title }}</td>
+                    <td>{{ post.body }}</td>
+                </tr> -->
+            </tbody>
+        </table>
+    </div>
+</div>
